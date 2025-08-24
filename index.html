@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Brassin — Systems-first AI Consulting</title>
+
+    <!-- Google Fonts: Sora (headlines) + Inter (body) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #b28704; /* brass */
+        --primary-2: #d4b35f;
+        --navy: #0b2545;
+        --accent: #00b3a6;
+        --bg: #fbf6ee;
+        --ui: #e6e1d8;
+        --text: #0b1220;
+
+        --radius: 12px;
+        --maxw: 1100px;
+        --gap: 24px;
+      }
+
+      /* Reset + sensible defaults */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.45;
+      }
+
+      a {
+        color: var(--navy);
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Layout */
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 36px 24px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .logo-mark {
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px;
+      }
+      .wordmark {
+        font-family: Sora, system-ui;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--navy);
+      }
+
+      nav a {
+        margin-left: 18px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      /* HERO */
+      .hero {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        padding: 28px 0;
+      }
+      .hero-left {
+        flex: 1;
+      }
+      .kicker {
+        font-family: Sora;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.6px;
+      }
+      h1 {
+        font-family: Sora;
+        font-size: 44px;
+        margin: 8px 0;
+        color: var(--navy);
+        line-height: 1.04;
+      }
+      .mission {
+        font-weight: 700;
+        margin: 14px 0 8px;
+        font-family: Sora;
+        color: var(--navy);
+      }
+      .mission-sub {
+        margin: 0 0 20px;
+        color: rgba(11, 18, 32, 0.85);
+        max-width: 720px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .btn {
+        border: 0;
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-weight: 700;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, var(--primary), var(--primary-2));
+        color: var(--navy);
+      }
+      .btn-ghost {
+        background: transparent;
+        border: 2px solid var(--navy);
+        color: var(--navy);
+      }
+
+      .hero-right {
+        width: 380px;
+      }
+      .panel {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.6),
+          rgba(255, 255, 255, 0.45)
+        );
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 12px 30px rgba(11, 18, 32, 0.06);
+      }
+      .panel h4 {
+        margin: 0 0 6px;
+        font-family: Sora;
+        color: var(--navy);
+      }
+
+      /* quick strip */
+      .strip {
+        display: flex;
+        gap: 18px;
+        margin: 18px 0;
+        padding: 16px;
+        background: var(--ui);
+        border-radius: 14px;
+      }
+      .strip-item {
+        flex: 1;
+        padding: 10px;
+      }
+      .strip-item h5 {
+        margin: 0 0 6px;
+        font-family: Sora;
+      }
+      .strip-item p {
+        margin: 0;
+        color: rgba(11, 18, 32, 0.75);
+      }
+
+      /* Two-column section */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: var(--gap);
+        align-items: start;
+        margin: 28px 0;
+      }
+      .box {
+        background: white;
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 6px 24px rgba(11, 18, 32, 0.04);
+      }
+
+      /* Who we are */
+      .who {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+      }
+      .badges {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .badge {
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: var(--ui);
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      /* Founders */
+      .founders {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 18px;
+      }
+      .founder {
+        background: white;
+        border-radius: 12px;
+        padding: 14px;
+        text-align: center;
+      }
+      .founder img {
+        width: 88px;
+        height: 88px;
+        border-radius: 999px;
+        object-fit: cover;
+        margin: 0 auto 12px;
+      }
+      .founder h4 {
+        margin: 6px 0;
+        font-family: Sora;
+      }
+      .founder p {
+        margin: 6px 0 0;
+        color: rgba(11, 18, 32, 0.75);
+      }
+      .founder .meta {
+        margin-top: 10px;
+        font-size: 13px;
+        color: rgba(11, 18, 32, 0.6);
+      }
+
+      /* Case studies */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 18px;
+      }
+      .card-case {
+        background: white;
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .card-case h3 {
+        margin: 8px 0;
+        font-family: Sora;
+      }
+      .metric {
+        font-weight: 700;
+        color: var(--navy);
+        margin-top: 8px;
+      }
+
+      /* Articles */
+      .articles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 18px;
+      }
+      .article {
+        background: white;
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .article h4 {
+        margin: 8px 0;
+        font-family: Sora;
+        font-size: 16px;
+      }
+      .article p {
+        margin: 0;
+        color: rgba(11, 18, 32, 0.7);
+      }
+      .article .author {
+        font-size: 13px;
+        color: rgba(11, 18, 32, 0.6);
+        margin-top: 8px;
+      }
+
+      /* Testimonials & logos */
+      .logos {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .logo-spot {
+        background: var(--ui);
+        padding: 8px 12px;
+        border-radius: 8px;
+      }
+
+      /* CTA Banner */
+      .cta-banner {
+        margin: 28px 0;
+        background: linear-gradient(90deg, var(--navy), #0b355e);
+        color: white;
+        padding: 20px;
+        border-radius: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .cta-banner .small {
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      footer {
+        padding: 26px 24px;
+        margin-top: 28px;
+        color: rgba(11, 18, 32, 0.6);
+      }
+
+      /* responsive */
+      @media (max-width: 1000px) {
+        .hero {
+          flex-direction: column;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .founders {
+          grid-template-columns: 1fr;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .articles {
+          grid-template-columns: 1fr;
+        }
+        .strip {
+          flex-direction: column;
+        }
+        .hero-right {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <div class="brand">
+        <!-- SVG mark: brass circle with small navy core -->
+        <img
+          class="logo-mark"
+          src="./images/brassin2.jpg"
+          alt="Brassin logo"
+          width="56"
+          height="56"
+        />
+        <div>
+          <div class="wordmark">Brassin</div>
+          <div style="font-size: 12px; color: rgba(11, 18, 32, 0.6)">
+            Warm Brass · Trust
+          </div>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav aria-label="Primary" class="nav-menu">
+        <a href="#who">Who</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <style>
+        header.container {
+          position: relative;
+        }
+
+        .mobile-menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          z-index: 1000;
+        }
+
+        .mobile-menu-toggle span {
+          display: block;
+          width: 25px;
+          height: 3px;
+          background-color: var(--navy);
+          margin: 5px 0;
+          border-radius: 3px;
+          transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+          .mobile-menu-toggle {
+            display: block;
+          }
+
+          .nav-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            background-color: var(--bg);
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 var(--radius) var(--radius);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            z-index: 900;
+          }
+
+          .nav-menu.active {
+            display: flex;
+          }
+
+          .nav-menu a {
+            margin-left: 0;
+            padding: 8px 16px;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+          }
+
+          .nav-menu a:last-child {
+            border-bottom: none;
+          }
+        }
+      </style>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" id="home" aria-label="Intro">
+        <div class="hero-left">
+          <div class="kicker">Brassin · AI Consulting</div>
+          <h1>We turn frontier AI into unfair advantage.</h1>
+
+          <div class="mission">
+            **We build production AI that outcompetes, outperforms, and
+            multiplies revenue.**
+          </div>
+          <p class="mission-sub">
+            We partner with growth-hungry companies to design, pilot, and scale
+            LLM-powered products that deliver measurable business outcomes —
+            faster than your competitors expect.
+          </p>
+
+          <div class="cta-row">
+            <a
+              class="btn btn-primary"
+              href="mailto:hello@brassin.ai?subject=AI%20Consulting%20Inquiry"
+              >Talk to an AI Partner</a
+            >
+            <a class="btn btn-ghost" href="#case-studies">See case studies</a>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="panel" aria-hidden="false">
+            <h4>Why Brassin?</h4>
+            <p>
+              Systems-first AI engineering, open-source heritage, and product
+              experience — we ship robust models and the infra to run them in
+              production.
+            </p>
+            <div style="margin-top: 12px; display: flex; gap: 8px">
+              <div
+                style="
+                  font-size: 12px;
+                  padding: 8px 10px;
+                  border-radius: 8px;
+                  background: var(--ui);
+                  font-weight: 600;
+                  color: var(--navy);
+                "
+              >
+                RectLab
+              </div>
+              <div
+                style="
+                  font-size: 12px;
+                  padding: 8px 10px;
+                  border-radius: 8px;
+                  background: var(--ui);
+                  font-weight: 600;
+                  color: var(--navy);
+                "
+              >
+                Trackus
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Quick value strip -->
+      <section class="strip" aria-label="Value propositions">
+        <div class="strip-item">
+          <h5>10× growth in pipeline</h5>
+          <p>Not vague research — measurable revenue outcomes within months.</p>
+        </div>
+        <div class="strip-item">
+          <h5>Defensible AI moats</h5>
+          <p>
+            Model + product design that locks in customers and raises barriers
+            to copy.
+          </p>
+        </div>
+        <div class="strip-item">
+          <h5>Ship production, not prototypes</h5>
+          <p>
+            Observability, infra, and governance — so your AI works reliably at
+            scale.
+          </p>
+        </div>
+      </section>
+
+      <!-- How we help + side CTA -->
+      <section class="two-col">
+        <div>
+          <h3 style="font-family: Sora">
+            You want to win the next 2–5 years. We design how.
+          </h3>
+          <p style="color: rgba(11, 18, 32, 0.8)">
+            If you’re done with pilots and want a real market advantage, we turn
+            AI into a product that makes customers choose you — and competitors
+            ask how.
+          </p>
+
+          <ul style="margin-top: 12px; color: rgba(11, 18, 32, 0.85)">
+            <li>
+              <strong>Driving sales with AI?</strong> We convert LLMs into
+              revenue funnels that compound.
+            </li>
+            <li>
+              <strong>Want an AI competitive advantage?</strong> We build
+              product moats that are hard to copy.
+            </li>
+            <li>
+              <strong>Ready to scale fast?</strong> We turn pilots into 10×
+              growth engines.
+            </li>
+          </ul>
+
+          <p style="margin-top: 14px">
+            <a
+              class="btn btn-ghost"
+              href="mailto:hello@brassin.ai?subject=AI%20Goal"
+              >Tell us your biggest AI goal</a
+            >
+          </p>
+        </div>
+
+        <aside>
+          <div class="box">
+            <h4 style="margin-top: 0; font-family: Sora">Starter Pilot</h4>
+            <p style="margin: 0 0 8px; color: rgba(11, 18, 32, 0.8)">
+              A focused, measurable pilot that proves ROI: data + scope audit, a
+              working LLM, and a success metric.
+            </p>
+            <div style="display: flex; gap: 8px; margin-top: 10px">
+              <a
+                class="btn btn-primary"
+                href="mailto:hello@brassin.ai?subject=Pilot%20Inquiry"
+                >Start a pilot</a
+              >
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Who we are -->
+      <section id="who" style="margin-top: 18px">
+        <div class="who">
+          <div class="who-content">
+            <h3 style="margin: 0 0 6px; font-family: Sora">
+              We're the minds behind market products and open-source tools.
+            </h3>
+            <p style="margin: 0; color: rgba(11, 18, 32, 0.8)">
+              We are the team behind RectLab and Trackus — creators of Danfo.js
+              and TMLops — builders who move from research to revenue.
+            </p>
+          </div>
+          <div class="badges">
+            <a class="badge" href="#">RectLab</a>
+            <a class="badge" href="#">Trackus</a>
+            <a class="badge" href="#">Danfo.js</a>
+            <a class="badge" href="#">TMLops</a>
+          </div>
+        </div>
+
+        <style>
+          .who {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0.6),
+              transparent
+            );
+          }
+
+          .who-content {
+            flex: 1;
+          }
+
+          .badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+          }
+
+          @media (max-width: 768px) {
+            .who {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 18px;
+            }
+
+            .who-content {
+              width: 100%;
+            }
+
+            .badges {
+              width: 100%;
+              justify-content: flex-start;
+            }
+          }
+        </style>
+      </section>
+
+      <!-- Founders -->
+      <section style="margin-top: 18px">
+        <h3 style="font-family: Sora">Founders & Core Team</h3>
+        <p style="margin: 6px 0 0; color: rgba(11, 18, 32, 0.75)">
+          Operator experience, research depth, and production engineering —
+          combined.
+        </p>
+
+        <div class="founders">
+          <div class="founder" tabindex="0">
+            <img src="./images/elisha.jpeg" alt="Founder 1 headshot" />
+            <h4>[Elisha Odemakinde]</h4>
+            <p>CEO · Product & GTM</p>
+            <div class="meta">
+              Built & scaled B2B SaaS GTM · Led ML product launches
+            </div>
+          </div>
+
+          <div class="founder" tabindex="0">
+            <img src="./images/yemi.jpeg" alt="Founder 2 headshot" />
+            <h4>[Opeyemi Bamigbade]</h4>
+            <p>Head of Research · PhD</p>
+            <div class="meta">Published researcher · RAG & LLM systems</div>
+          </div>
+
+          <div class="founder" tabindex="0">
+            <img src="./images/steve.jpeg" alt="Founder 3 headshot" />
+            <h4>[Stephen Oni]</h4>
+            <p>Engineering Lead · Systems</p>
+            <div class="meta">Model infra · Observability & deploy</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case studies -->
+      <section id="case-studies" style="margin-top: 26px">
+        <h3 style="font-family: Sora">Case Studies</h3>
+        <p style="margin: 6px 0 12px; color: rgba(11, 18, 32, 0.75)">
+          Results-focused summaries showcasing measurable business impact and
+          ROI.
+        </p>
+
+        <style>
+          .card-case {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+          .card-content {
+            flex: 1;
+          }
+          .metric {
+            margin-top: auto;
+            padding-top: 12px;
+          }
+          .card-case img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        </style>
+
+        <div class="cards">
+          <article class="card-case" aria-labelledby="cs1">
+            <img src="./images/lawcase.jpeg" alt="LegalRag screenshot" />
+            <div class="card-content">
+              <h3 id="cs1">Legalz — Instant, board-grade legal intelligence</h3>
+              <p>
+                <strong>Challenge:</strong> Law firm struggled with slow legal
+                review cycles, causing deal delays and frustrated clients
+                needing immediate counsel.
+              </p>
+              <p>
+                <em>Solution:</em> Built a secure, compliant knowledge system
+                that instantly surfaces relevant case law and precedents —
+                enabling faster client response and more informed
+                decision-making.
+              </p>
+            </div>
+            <div class="metric">Result: 70% reduction in review time</div>
+          </article>
+
+          <article class="card-case" aria-labelledby="cs2">
+            <img src="./images/sales.jpeg" alt="SaleCRM screenshot" />
+            <div class="card-content">
+              <h3 id="cs2">S-Pilot — Your CRM that actually closes deals</h3>
+              <p>
+                <strong>Challenge:</strong> Sales team overwhelmed by
+                low-quality leads and repetitive outreach tasks, resulting in
+                missed opportunities and low conversion.
+              </p>
+              <p>
+                <em>Solution:</em> Created an intelligent agent that
+                automatically qualifies leads, personalizes outreach, and
+                prioritizes high-value prospects — allowing sales reps to focus
+                solely on relationship-building and closing.
+              </p>
+            </div>
+            <div class="metric">
+              Result: 3× increase in qualified leads in 8 weeks
+            </div>
+          </article>
+
+          <article class="card-case" aria-labelledby="cs3">
+            <img src="./images/customer.jpeg" alt="SupportFlow screenshot" />
+            <div class="card-content">
+              <h3 id="cs3">
+                SupportSage — Support that scales without killing margins
+              </h3>
+              <p>
+                <strong>Challenge:</strong> Growing SaaS company facing soaring
+                customer support costs and deteriorating response times as user
+                base expanded.
+              </p>
+              <p>
+                <em>Solution:</em> Implemented an intelligent multi-channel
+                support system that automatically handles routine inquiries
+                while identifying critical issues for human escalation —
+                improving both efficiency and customer satisfaction.
+              </p>
+            </div>
+            <div class="metric">
+              Result: 60% ticket automation with NPS improvement
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Technical Articles -->
+      <section id="articles" style="margin-top: 26px">
+        <h3 style="font-family: Sora">Technical Articles</h3>
+        <p style="margin: 6px 0 12px; color: rgba(11, 18, 32, 0.75)">
+          Deep, practical posts from our team — each card links to the full
+          article.
+        </p>
+
+        <style>
+          .article img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+
+          .hidden-articles {
+            display: none;
+          }
+
+          .hidden-articles.visible {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 18px;
+          }
+
+          @media (max-width: 1000px) {
+            .hidden-articles.visible {
+              grid-template-columns: 1fr;
+            }
+          }
+        </style>
+
+        <div class="articles">
+          <a
+            class="article"
+            href="https://medium.com/@elishatofunmi/trackus-coach-10x-better-formulating-better-winning-strategies-with-ai-292081cbfb27"
+            aria-labelledby="a1"
+          >
+            <img src="./images/fottball.webp" alt="strategies" />
+            <h4 id="a1">
+              Trackus — Coach 10x better, formulating better winning strategies
+              with AI
+            </h4>
+            <p class="author">[Elisha]</p>
+            <p>
+              Coaching is complex, requiring years of observation, analysis, and
+              feedback to guide players effectively — a process that’s often
+              slow and subjective. Trackus solves this by using AI to track
+              players in real time, generate tactical analytics, and deliver
+              actionable insights instantly. This allows coaches to make smarter
+              decisions, optimize strategies, and evaluate players objectively.
+              In short, Trackus makes coaching faster, more data-driven, and up
+              to ten times more effective.
+            </p>
+          </a>
+
+          <a
+            class="article"
+            href="https://heartbeat.comet.ml/building-production-machine-learning-systems-on-google-cloud-platform-part-1-959e0ad99b75"
+            aria-labelledby="a2"
+          >
+            <img
+              src="./images/container.webp"
+              alt="Building Production Machine Learning Systems"
+            />
+            <h4 id="a2">
+              Building Production Machine Learning Systems on Google Cloud
+              Platform
+            </h4>
+            <p class="author">[Opeyemi]</p>
+            <p>
+              Most machine learning projects fail to move from prototypes to
+              production because teams struggle with scalability, monitoring,
+              and reliable deployment. This article addresses that challenge by
+              showing how Google Cloud Platform can be used to build
+              production-grade ML systems. It explains the problems with ad-hoc
+              training and serving, then introduces structured approaches for
+              static vs. dynamic training and inference. The main point is
+              creating a robust pipeline—covering training, serving, logging,
+              and monitoring—that ensures ML models are not just built but
+              consistently deliver value in real-world environments.
+            </p>
+          </a>
+
+          <a
+            class="article"
+            href="https://arxiv.org/pdf/2402.15448"
+            aria-labelledby="a3"
+          >
+            <img src="./images/eo3.jpeg" alt="Research paper" />
+            <h4 id="a3">
+              Computer vision for multimedia geolocation in human trafficking
+              investigation: A systematic literature review
+            </h4>
+            <p class="author">[Opeyemi]</p>
+            <p>
+              Investigators often struggle to trace human trafficking content
+              because multimedia files usually lack geolocation metadata. This
+              paper reviews computer vision and deep learning methods that infer
+              location directly from images and videos, bypassing that
+              limitation. Surveying 123 studies, it shows how AI can speed up
+              and strengthen digital forensics, offering faster,
+              metadata-independent location inference for law enforcement.
+            </p>
+          </a>
+        </div>
+
+        <p style="margin-top: 12px">
+          <a
+            href="#"
+            id="view-all-articles"
+            style="font-weight: 700; color: var(--accent)"
+            >View all articles →</a
+          >
+        </p>
+      </section>
+
+      <!-- Testimonials & logos -->
+      <section style="margin-top: 26px">
+        <h3 style="font-family: Sora">Trusted by</h3>
+        <div class="logos" style="margin-top: 12px">
+          <div class="logo-spot">EarlyPartnerCo</div>
+          <div class="logo-spot">Acme Legal</div>
+          <div class="logo-spot">FinServ Labs</div>
+          <div class="logo-spot">RetailX</div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section
+        class="cta-banner"
+        aria-label="Contact banner"
+        style="margin-top: 26px"
+      >
+        <style>
+          .cta-banner {
+            margin: 28px 0;
+            background: linear-gradient(90deg, var(--navy), #0b355e);
+            color: white;
+            padding: 20px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+          }
+
+          .cta-content {
+            flex: 1;
+            min-width: 280px;
+          }
+
+          .cta-button {
+            white-space: nowrap;
+          }
+
+          @media (max-width: 600px) {
+            .cta-banner {
+              padding: 16px;
+            }
+
+            .cta-content,
+            .cta-button {
+              width: 100%;
+              text-align: center;
+            }
+
+            .cta-button {
+              margin-top: 10px;
+            }
+          }
+        </style>
+        <div>
+          <div style="font-weight: 700; font-size: 18px">
+            Ready to estimate your AI impact?
+          </div>
+          <div class="small">
+            We’ll propose a focused pilot that targets measurable revenue or
+            cost outcomes — no slide decks required.
+          </div>
+        </div>
+        <div>
+          <a
+            class="btn btn-primary"
+            href="mailto:hello@brassin.ai?subject=ROI%20Call"
+            >Book a 20-minute ROI call</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="container">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        "
+      >
+        <div>
+          <div style="font-weight: 700">Brassin</div>
+          <div style="font-size: 13px; color: rgba(11, 18, 32, 0.6)">
+            Warm Brass · Trust — Systems-first AI consulting
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center">
+          <a href="mailto:hello@brassin.ai">hello@brassin.ai</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+
+      <div
+        style="margin-top: 12px; color: rgba(11, 18, 32, 0.6); font-size: 13px"
+      >
+        © Brassin — Practical, systems-first AI engineering
+      </div>
+    </footer>
+
+    <!-- Lightweight JS for modals and smooth scroll -->
+    <script>
+      document
+        .querySelector(".mobile-menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.toggle("active");
+
+          // Toggle hamburger to X animation
+          const spans = this.querySelectorAll("span");
+          if (
+            document.querySelector(".nav-menu").classList.contains("active")
+          ) {
+            spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
+            spans[1].style.opacity = "0";
+            spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
+          } else {
+            spans[0].style.transform = "none";
+            spans[1].style.opacity = "1";
+            spans[2].style.transform = "none";
+          }
+        });
+
+      // Close menu when a link is clicked
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.remove("active");
+
+          // Reset hamburger icon
+          const spans = document.querySelectorAll(".mobile-menu-toggle span");
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+        });
+      });
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (href.length > 1) {
+            const el = document.querySelector(href);
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+
+      // Simple modal behavior (placeholder for technical appendices)
+      document.querySelectorAll("[data-modal]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = btn.getAttribute("data-modal");
+          // For now open a new tab to a placeholder or show alert
+          window.open("#" + id, "_blank");
+        });
+      });
+
+      document
+        .getElementById("view-all-articles")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const moreArticles = document.getElementById("more-articles");
+          moreArticles.classList.toggle("visible");
+
+          // Change button text based on state
+          if (moreArticles.classList.contains("visible")) {
+            this.textContent = "Show fewer articles ↑";
+          } else {
+            this.textContent = "View all articles →";
+          }
+        });
+    </script>
+  </body>
+</html>
