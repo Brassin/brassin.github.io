@@ -8,8 +8,7 @@
     <!-- Google Fonts: Sora (headlines) + Inter (body) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <style>
       /* Enhanced Base Styles */
@@ -173,7 +172,7 @@
       .hero {
         display: flex;
         align-items: center;
-        padding: 100px 0;
+        padding: 0px 0; /* Reduced from 100px */
       }
 
       .kicker {
@@ -257,12 +256,14 @@
         background: var(--ui);
         border-radius: 18px;
         gap: var(--spacing-md);
-        margin: 100px 0 var(--spacing-xl) 0;
+        /* Reduce top margin for less space above the strip */
+        margin: 40px 0 var(--spacing-xl) 0;
         padding: 32px 28px;
       }
 
       .strip-item {
         padding: var(--spacing-sm);
+        margin: 0px 0 var(--spacing-xl) 0;
       }
 
       .strip-item h5 {
@@ -897,8 +898,7 @@
           src="./images/brassin2.jpg"
           alt="Brassin logo"
           width="56"
-          height="56"
-        />
+          height="56" />
         <div>
           <div class="wordmark">Brassin</div>
           <div style="font-size: 12px; color: rgba(11, 18, 32, 0.6)">
@@ -996,16 +996,17 @@
       <section class="hero" id="home" aria-label="Intro">
         <div class="hero-left">
           <div class="kicker">Brassin · AI Consulting</div>
-          <h1>We turn frontier AI into unfair advantage.</h1>
+          <!-- <h1>We turn frontier AI into unfair advantage.</h1> -->
+          <h1>Turning frontier AI into unfair advantage!</h1>
 
           <div class="mission">
-            **We build production AI that outcompetes, outperforms, and
-            multiplies revenue.**
+            We build production AI that outcompetes, outperforms, and multiplies
+            revenue.
           </div>
           <p class="mission-sub">
-            We partner with growth-hungry companies to design, pilot, and scale
-            AI-powered products that deliver measurable business outcomes -
-            faster than your competitors expect.
+            Do you want to outpace your competitors? Have us design, pilot, and
+            scale AI-powered products that deliver measurable business outcomes
+            specifically for your industry.
           </p>
 
           <div class="cta-row">
@@ -1041,7 +1042,7 @@
         </div>
       </section>
 
-      <!-- How we help + side CTA -->
+      <!-- How we help + side CTA
       <section class="two-col">
         <div>
           <h3 style="font-family: Sora">
@@ -1067,9 +1068,9 @@
               growth engines.
             </li>
           </ul>
-        </div>
+        </div> -->
 
-        <aside>
+      <!-- <aside>
           <div class="box">
             <h4 style="margin-top: 0; font-family: Sora">Starter Pilot</h4>
             <p style="margin: 0 0 8px; color: rgba(11, 18, 32, 0.8)">
@@ -1085,7 +1086,7 @@
             </div>
           </div>
         </aside>
-      </section>
+      </section> -->
 
       <!-- Case studies -->
       <section id="case-studies">
@@ -1118,8 +1119,7 @@
           <article
             class="card-case"
             aria-labelledby="cs1"
-            style="margin-bottom: 40px"
-          >
+            style="margin-bottom: 40px">
             <img src="./images/lawcase.jpeg" alt="LegalRag screenshot" />
             <div class="card-content">
               <h3 id="cs1">Legalz — Instant, board-grade legal intelligence</h3>
@@ -1267,10 +1267,13 @@
           </div>
 
           <div class="founder" tabindex="0">
-            <img src="./images/yemi.jpeg" alt="Founder 2 headshot" />
+            <img src="./images/yemi.jpg" alt="Founder 2 headshot" />
             <h4>[Opeyemi Bamigbade]</h4>
-            <p>Head of Research · PhD</p>
-            <div class="meta">Published researcher · RAG & LLM systems</div>
+            <p>Head of Research · PhD Candidate</p>
+            <div class="meta">
+              Published researcher · AI Engineer · Computer Vision, RAG & LLM
+              systems
+            </div>
           </div>
 
           <div class="founder" tabindex="0">
@@ -1301,8 +1304,7 @@
         class="cta-banner"
         aria-label="Contact banner"
         id="contact"
-        style="margin-top: 26px"
-      >
+        style="margin-top: 26px">
         <style>
           .cta-banner {
             margin: 28px 0 100px;
@@ -1404,8 +1406,7 @@
           <a
             class="article"
             href="https://medium.com/@elishatofunmi/trackus-coach-10x-better-formulating-better-winning-strategies-with-ai-292081cbfb27"
-            aria-labelledby="a1"
-          >
+            aria-labelledby="a1">
             <img src="./images/fottball.webp" alt="strategies" />
             <h4 id="a1">
               Trackus — Coach 10x better, formulating better winning strategies
@@ -1427,12 +1428,10 @@
           <a
             class="article"
             href="https://heartbeat.comet.ml/building-production-machine-learning-systems-on-google-cloud-platform-part-1-959e0ad99b75"
-            aria-labelledby="a2"
-          >
+            aria-labelledby="a2">
             <img
               src="./images/container.webp"
-              alt="Building Production Machine Learning Systems"
-            />
+              alt="Building Production Machine Learning Systems" />
             <h4 id="a2">
               Building Production Machine Learning Systems on Google Cloud
               Platform
@@ -1455,8 +1454,7 @@
           <a
             class="article"
             href="https://arxiv.org/pdf/2402.15448"
-            aria-labelledby="a3"
-          >
+            aria-labelledby="a3">
             <img src="./images/eo3.jpeg" alt="Research paper" />
             <h4 id="a3">
               Computer vision for multimedia geolocation in human trafficking
@@ -1494,8 +1492,7 @@
           align-items: center;
           gap: 12px;
           flex-wrap: wrap;
-        "
-      >
+        ">
         <div>
           <div style="font-weight: 700">Brassin</div>
           <div style="font-size: 13px; color: rgba(11, 18, 32, 0.6)">
@@ -1511,8 +1508,7 @@
       </div>
 
       <div
-        style="margin-top: 12px; color: rgba(11, 18, 32, 0.6); font-size: 13px"
-      >
+        style="margin-top: 12px; color: rgba(11, 18, 32, 0.6); font-size: 13px">
         © Brassin — Practical, systems-first AI engineering
       </div>
     </footer>
