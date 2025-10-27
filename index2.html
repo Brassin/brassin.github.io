@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Brassin — AI Consulting</title>
+
+    <!-- Google Fonts: Sora (headlines) + Inter (body) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      /* Enhanced Base Styles */
+      :root {
+        --primary: #b28704; /* brass */
+        --primary-2: #d4b35f;
+        --navy: #0b2545;
+        --accent: #00b3a6;
+        --bg: #fbf6ee;
+        --ui: #e6e1d8;
+        --text: #0b1220;
+
+        /* Enhanced spacing system */
+        --spacing-xs: 8px;
+        --spacing-sm: 16px;
+        --spacing-md: 24px;
+        --spacing-lg: 36px;
+        --spacing-xl: 48px;
+        --spacing-xxl: 64px;
+
+        --radius: 12px;
+        --maxw: 1100px;
+      }
+
+      body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.45;
+      }
+
+      /* Typography Scale */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: Sora, system-ui;
+        color: var(--navy);
+        margin: 0 0 var(--spacing-sm);
+      }
+
+      h1 {
+        font-size: 58px;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+      }
+
+      h2 {
+        font-size: 44px;
+        line-height: 1.15;
+        letter-spacing: -0.3px;
+      }
+
+      h3 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      h4 {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      p {
+        margin: 0 0 var(--spacing-md);
+        color: rgba(11, 18, 32, 0.85);
+      }
+
+      /* Enhanced Sections */
+      section {
+        margin-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-sm);
+      }
+
+      section > h3 {
+        margin-bottom: var(--spacing-xs);
+      }
+
+      section > p {
+        margin-bottom: var(--spacing-md);
+        color: rgba(11, 18, 32, 0.75);
+      }
+
+      .two-col + #case-studies {
+        margin-top: 100px;
+      }
+
+      #case-studies {
+        margin-bottom: 100px;
+      }
+
+      #case-studies + #who {
+        margin-top: 100px;
+        padding-top: 12px;
+      }
+
+      .founders {
+        margin-bottom: 100px;
+      }
+
+      .logos {
+        margin-bottom: 32px;
+      }
+
+      .cta-banner + #articles {
+        margin-top: 100px;
+      }
+
+      /* Layout Containers */
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 36px 24px;
+      }
+
+      /* Enhanced Header */
+      header.container {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        position: relative;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo-mark {
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px;
+      }
+
+      .wordmark {
+        font-family: Sora, system-ui;
+        font-weight: 700;
+        font-size: 24px;
+        color: var(--navy);
+      }
+
+      nav a {
+        margin-left: 24px;
+        font-weight: 600;
+        color: var(--navy);
+        position: relative;
+        transition: color 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+      }
+
+      /* Enhanced Hero Section */
+      .hero {
+        display: flex;
+        align-items: center;
+        padding: 0px 0; /* Reduced from 100px */
+      }
+
+      .kicker {
+        font-family: Sora;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.8px;
+        font-size: 17px;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .hero h1 {
+        font-size: 58px;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin: var(--spacing-sm) 0 var(--spacing-md);
+        color: var(--navy);
+      }
+
+      .mission {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.3;
+        margin: var(--spacing-lg) 0 var(--spacing-md);
+        font-family: Sora;
+        color: var(--navy);
+      }
+
+      .mission-sub {
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0 0 var(--spacing-lg);
+        color: rgba(11, 18, 32, 0.85);
+        max-width: 760px;
+      }
+
+      /* Enhanced Buttons */
+      .cta-row {
+        display: flex;
+        gap: var(--spacing-sm);
+        align-items: center;
+        margin-top: var(--spacing-lg);
+      }
+
+      .btn {
+        border: 0;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: 700;
+        padding: 14px 28px;
+        font-size: 16px;
+        transition: all 0.2s;
+        letter-spacing: 0.3px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, var(--primary), var(--primary-2));
+        color: var(--navy);
+        box-shadow: 0 4px 12px rgba(178, 135, 4, 0.2);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(178, 135, 4, 0.25);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 2px solid var(--navy);
+        color: var(--navy);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(11, 37, 69, 0.05);
+      }
+
+      /* Enhanced Value Strip */
+      .strip {
+        display: flex;
+        background: var(--ui);
+        border-radius: 18px;
+        gap: var(--spacing-md);
+        /* Reduce top margin for less space above the strip */
+        margin: 40px 0 var(--spacing-xl) 0;
+        padding: 32px 28px;
+      }
+
+      .strip-item {
+        padding: var(--spacing-sm);
+        margin: 0px 0 var(--spacing-xl) 0;
+      }
+
+      .strip-item h5 {
+        font-family: Sora;
+        font-size: 21px;
+        margin: 0 0 var(--spacing-sm);
+        color: var(--navy);
+      }
+
+      .strip-item p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        color: rgba(11, 18, 32, 0.8);
+      }
+
+      /* Enhanced Two-column Layout */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: var(--spacing-lg);
+        align-items: start;
+        margin: var(--spacing-lg) 0 100px;
+      }
+
+      .box {
+        background: white;
+        padding: 24px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 24px rgba(11, 18, 32, 0.06);
+      }
+
+      .box h4 {
+        margin-top: 0;
+        margin-bottom: var(--spacing-xs);
+        font-size: 20px;
+      }
+
+      /* Enhanced Who We Are Section */
+      .who {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: 24px;
+        border-radius: 14px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+      }
+
+      .who-content {
+        flex: 1;
+      }
+
+      .who h3 {
+        font-size: 26px;
+        margin: 0 0 var(--spacing-xs);
+      }
+
+      .badges {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .badge {
+        padding: 10px 16px;
+        border-radius: 10px;
+        background: var(--ui);
+        font-weight: 600;
+        color: var(--navy);
+        transition: all 0.2s;
+      }
+
+      .badge:hover {
+        background: var(--primary-2);
+        color: var(--navy);
+        transform: translateY(-2px);
+      }
+
+      /* Enhanced Founders Section */
+      .founders {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: var(--spacing-md);
+      }
+
+      .founder {
+        background: white;
+        border-radius: var(--radius);
+        padding: 24px;
+        text-align: center;
+        transition: transform 0.2s;
+      }
+
+      .founder:hover {
+        transform: translateY(-4px);
+      }
+
+      .founder img {
+        width: 110px;
+        height: 110px;
+        border-radius: 999px;
+        object-fit: cover;
+        margin: 0 auto var(--spacing-sm);
+        border: 3px solid var(--bg);
+      }
+
+      .founder h4 {
+        margin: var(--spacing-xs) 0;
+        font-size: 18px;
+      }
+
+      .founder p {
+        margin: var(--spacing-xs) 0 0;
+        color: rgba(11, 18, 32, 0.75);
+        font-weight: 500;
+      }
+
+      .founder .meta {
+        margin-top: var(--spacing-sm);
+        font-size: 14px;
+        color: rgba(11, 18, 32, 0.7);
+        line-height: 1.5;
+      }
+
+      /* Enhanced Case Studies */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px; /* Updated from 24px */
+        margin-top: var(--spacing-md);
+      }
+
+      .card-case {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: white;
+        border-radius: var(--radius);
+        padding: 18px;
+        margin-bottom: 0 !important; /* Override inline margins */
+        box-shadow: 0 8px 24px rgba(11, 18, 32, 0.07);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .card-case:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(11, 18, 32, 0.1);
+      }
+
+      .card-content {
+        flex: 1;
+      }
+
+      .card-case h3 {
+        margin: var(--spacing-sm) 0;
+        font-size: 20px;
+      }
+
+      .card-case p {
+        margin-bottom: var(--spacing-sm);
+        font-size: 15px;
+      }
+
+      .metric {
+        font-weight: 700;
+        color: var(--navy);
+        padding-top: var(--spacing-sm);
+        margin-top: auto;
+        border-top: 1px solid rgba(11, 18, 32, 0.08);
+      }
+
+      .card-case img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      /* Enhanced Articles */
+      .articles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: var(--spacing-md);
+      }
+
+      .article {
+        background: white;
+        border-radius: var(--radius);
+        padding: 16px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .article:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(11, 18, 32, 0.08);
+      }
+
+      .article img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .article h4 {
+        margin: var(--spacing-sm) 0;
+        font-family: Sora;
+        font-size: 18px;
+      }
+
+      .article p {
+        margin: 0;
+        color: rgba(11, 18, 32, 0.7);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .article .author {
+        font-size: 14px;
+        color: rgba(11, 18, 32, 0.6);
+        margin: var(--spacing-xs) 0 var(--spacing-xs);
+        font-weight: 500;
+      }
+
+      .hidden-articles {
+        display: none;
+      }
+
+      .hidden-articles.visible {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: var(--spacing-md);
+      }
+
+      /* Enhanced Testimonials & Logos */
+      .logos {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: var(--spacing-sm);
+      }
+
+      .logo-spot {
+        background: var(--ui);
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        color: rgba(11, 18, 32, 0.75);
+        transition: all 0.2s;
+      }
+
+      .logo-spot:hover {
+        background: rgba(178, 135, 4, 0.15);
+        transform: translateY(-2px);
+      }
+
+      /* Enhanced CTA Banner */
+      .cta-banner {
+        margin: var(--spacing-lg) 0;
+        background: linear-gradient(90deg, var(--navy), #0b355e);
+        color: white;
+        padding: 28px 24px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+      }
+
+      .cta-content {
+        flex: 1;
+        min-width: 280px;
+      }
+
+      .cta-banner .small {
+        opacity: 0.9;
+        margin-top: 6px;
+        font-size: 16px;
+      }
+
+      .cta-button {
+        white-space: nowrap;
+      }
+
+      /* Enhanced Footer */
+      footer {
+        padding: var(--spacing-lg) 24px;
+        margin-top: var(--spacing-lg);
+        color: rgba(11, 18, 32, 0.6);
+      }
+
+      footer a {
+        color: var(--navy);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      footer a:hover {
+        color: var(--primary);
+      }
+
+      /* Mobile Navigation */
+      .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      .mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--navy);
+        margin: 5px 0;
+        border-radius: 3px;
+        transition: all 0.3s;
+      }
+      a {
+        color: var(--navy);
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Layout Containers */
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 36px 24px;
+      }
+
+      /* Fixed Header/Navigation */
+      header.container {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo-mark {
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px;
+      }
+
+      .wordmark {
+        font-family: Sora, system-ui;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--navy);
+      }
+
+      nav a {
+        margin-left: 18px;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        position: relative;
+        transition: color 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* Enhanced Responsive Styles */
+      @media (max-width: 1000px) {
+        .hero {
+          flex-direction: column;
+          flex-direction: column;
+          padding: 80px 0;
+        }
+
+        h1 {
+          font-size: 44px;
+        }
+
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+
+        .founders {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .articles {
+          grid-template-columns: 1fr;
+        }
+
+        .strip {
+          flex-direction: column;
+          padding: var(--spacing-md);
+        }
+
+        .hero-right {
+          width: 100%;
+          margin-top: var(--spacing-lg);
+        }
+        .cards {
+          grid-template-columns: 1fr;
+          gap: 40px; /* Increased gap for mobile */
+        }
+
+        .card-case {
+          margin-bottom: 0 !important;
+          border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+          padding-bottom: 28px;
+        }
+
+        .card-case:last-child {
+          border-bottom: none;
+        }
+        .strip {
+          flex-direction: column;
+          padding: var(--spacing-md);
+          margin: 80px 0 var(--spacing-lg);
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+          margin-bottom: 80px;
+        }
+        .two-col + #case-studies {
+          margin-top: 80px;
+        }
+
+        #case-studies {
+          margin-bottom: 80px;
+        }
+        #case-studies + #who {
+          margin-top: 80px;
+        }
+
+        .founders {
+          margin-bottom: 80px;
+        }
+
+        .cta-banner {
+          margin-bottom: 80px;
+        }
+        .cta-banner + #articles {
+          margin-top: 80px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 24px 16px;
+        }
+
+        .mobile-menu-toggle {
+          display: block;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+          gap: 32px; /* Increased from 24px */
+        }
+
+        .nav-menu {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          left: 0;
+          background-color: var(--bg);
+          padding: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border-radius: 0 0 var(--radius) var(--radius);
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+          z-index: 900;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu a {
+          margin-left: 0;
+          padding: 8px 16px;
+          width: 100%;
+          text-align: center;
+          border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+        }
+
+        .nav-menu a:last-child {
+          border-bottom: none;
+        }
+
+        .hero {
+          padding: 60px 0;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+          margin: var(--spacing-xs) 0 var(--spacing-sm);
+        }
+
+        .mission {
+          font-size: 20px;
+          margin: var(--spacing-md) 0 var(--spacing-sm);
+        }
+
+        .mission-sub {
+          font-size: 16px;
+          margin-bottom: var(--spacing-md);
+        }
+
+        .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 16px;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .btn {
+          width: 100%;
+          text-align: center;
+          box-sizing: border-box;
+          margin: 0;
+        }
+
+        .who {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--spacing-md);
+          padding: var(--spacing-md);
+        }
+
+        .who-content {
+          width: 100%;
+        }
+
+        .badges {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
+        .hidden-articles.visible {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-banner {
+          padding: var(--spacing-md);
+        }
+
+        .cta-content,
+        .cta-button {
+          width: 100%;
+          text-align: center;
+        }
+
+        .cta-button {
+          margin-top: var(--spacing-xs);
+        }
+        .two-col + #case-studies {
+          margin-top: 48px;
+        }
+
+        #case-studies + #who {
+          margin-top: 56px;
+        }
+
+        .founders {
+          margin-bottom: 40px;
+        }
+
+        .cta-banner + #articles {
+          margin-top: 60px;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+          gap: 55px;
+        }
+
+        .card-case {
+          box-shadow: 0 10px 28px rgba(11, 18, 32, 0.09);
+          padding: 16px;
+          padding-bottom: 24px;
+        }
+        #case-studies + #who {
+          margin-top: 60px;
+        }
+
+        .founders {
+          margin-bottom: 60px;
+        }
+
+        .cta-banner {
+          margin-bottom: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <div class="brand">
+        <!-- SVG mark: brass circle with small navy core -->
+        <img
+          class="logo-mark"
+          src="./images/brassin2.jpg"
+          alt="Brassin logo"
+          width="56"
+          height="56" />
+        <div>
+          <div class="wordmark">Brassin</div>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav aria-label="Primary" class="nav-menu">
+        <a href="#who">About</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <style>
+        header.container {
+          position: relative;
+        }
+
+        .mobile-menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          z-index: 1000;
+        }
+
+        .mobile-menu-toggle span {
+          display: block;
+          width: 25px;
+          height: 3px;
+          background-color: var(--navy);
+          margin: 5px 0;
+          border-radius: 3px;
+          transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+          .mobile-menu-toggle {
+            display: block;
+          }
+
+          .nav-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            background-color: var(--bg);
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 var(--radius) var(--radius);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            z-index: 900;
+          }
+
+          .nav-menu.active {
+            display: flex;
+          }
+
+          .nav-menu a {
+            margin-left: 0;
+            padding: 8px 16px;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+          }
+
+          .nav-menu a:last-child {
+            border-bottom: none;
+          }
+
+          .two-col + #case-studies {
+            margin-top: 60px;
+          }
+
+          #case-studies {
+            margin-bottom: 60px;
+          }
+        }
+      </style>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" id="home" aria-label="Intro">
+        <div class="hero-left">
+          <div class="kicker">Brassin · AI Consulting</div>
+          <!-- <h1>We turn frontier AI into unfair advantage.</h1> -->
+          <h1>Turning frontier AI into unfair advantage!</h1>
+
+          <div class="mission">
+            We build production AI that outcompetes, outperforms, and multiplies
+            revenue.
+          </div>
+          <p class="mission-sub">
+            Do you want to outpace your competitors? Have us design, pilot, and
+            scale AI-powered products that deliver measurable business outcomes
+            specifically for your industry.
+          </p>
+
+          <div class="cta-row">
+            <a
+              class="btn btn-primary"
+              href="https://calendly.com/brassinai"
+              target="_blank" rel="noopener noreferrer"
+              >Talk to an AI Partner</a
+            >
+            <a class="btn btn-ghost" href="#case-studies">See case studies</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick value strip -->
+      <section class="strip" aria-label="Value propositions">
+        <div class="strip-item">
+          <h5>10× growth in pipeline</h5>
+          <p>Not vague research - measurable revenue outcomes within months.</p>
+        </div>
+        <div class="strip-item">
+          <h5>Defensible AI moats</h5>
+          <p>
+            Model + product design that locks in customers and raises barriers
+            to copy.
+          </p>
+        </div>
+        <div class="strip-item">
+          <h5>Ship production, not prototypes</h5>
+          <p>
+            Observability, infra, and governance - so your AI works reliably at
+            scale.
+          </p>
+        </div>
+      </section>
+
+      <!-- How we help + side CTA
+      <section class="two-col">
+        <div>
+          <h3 style="font-family: Sora">
+            You want to win the next 2–5 years. We design how.
+          </h3>
+          <p style="color: rgba(11, 18, 32, 0.8)">
+            If you’re done with pilots and want a real market advantage, we turn
+            AI into a product that makes customers choose you - and competitors
+            ask how.
+          </p>
+
+          <ul style="margin-top: 12px; color: rgba(11, 18, 32, 0.85)">
+            <li>
+              <strong>Driving sales with AI?</strong> We convert LLMs into
+              revenue funnels that compound.
+            </li>
+            <li>
+              <strong>Want an AI competitive advantage?</strong> We build
+              product moats that are hard to copy.
+            </li>
+            <li>
+              <strong>Ready to scale fast?</strong> We turn pilots into 10×
+              growth engines.
+            </li>
+          </ul>
+        </div> -->
+
+      <!-- <aside>
+          <div class="box">
+            <h4 style="margin-top: 0; font-family: Sora">Starter Pilot</h4>
+            <p style="margin: 0 0 8px; color: rgba(11, 18, 32, 0.8)">
+              A focused, measurable pilot that proves ROI: data + scope audit, a
+              working product, and a success metric.
+            </p>
+            <div style="display: flex; gap: 8px; margin-top: 10px">
+              <a
+                class="btn btn-primary"
+                href="mailto:hello@brassin.ai?subject=Pilot%20Inquiry"
+                >Start a pilot</a
+              >
+            </div>
+          </div>
+        </aside>
+      </section> -->
+
+      <!-- Case studies -->
+      <section id="case-studies">
+        <h3 style="font-family: Sora">Case Studies</h3>
+        <p style="margin: 6px 0 12px; color: rgba(11, 18, 32, 0.75)">
+          Results-focused summaries showcasing measurable business impact and
+          ROI.
+        </p>
+
+        <style>
+          .card-case {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+
+          .metric {
+            margin-top: auto;
+            padding-top: 12px;
+          }
+          .card-case img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        </style>
+
+        <div class="cards">
+          <article
+            class="card-case"
+            aria-labelledby="cs1"
+            style="margin-bottom: 40px">
+            <img src="./images/lawcase.jpeg" alt="LegalRag screenshot" />
+            <div class="card-content">
+              <h3 id="cs1">Legalz — Instant, board-grade legal intelligence</h3>
+              <p>
+                <strong>Challenge:</strong> Law firm struggled with slow legal
+                review cycles, causing deal delays and frustrated clients
+                needing immediate counsel.
+              </p>
+              <p>
+                <em>Solution:</em> Built a secure, compliant knowledge system
+                that instantly surfaces relevant case law and precedents —
+                enabling faster client response and more informed
+                decision-making.
+              </p>
+            </div>
+            <div class="metric">Result: 70% reduction in review time</div>
+          </article>
+
+          <article class="card-case" aria-labelledby="cs2">
+            <img src="./images/sales.jpeg" alt="SaleCRM screenshot" />
+            <div class="card-content">
+              <h3 id="cs2">S-Pilot — Your CRM that actually closes deals</h3>
+              <p>
+                <strong>Challenge:</strong> Sales team overwhelmed by
+                low-quality leads and repetitive outreach tasks, resulting in
+                missed opportunities and low conversion.
+              </p>
+              <p>
+                <em>Solution:</em> Created an intelligent agent that
+                automatically qualifies leads, personalizes outreach, and
+                prioritizes high-value prospects — allowing sales reps to focus
+                solely on relationship-building and closing.
+              </p>
+            </div>
+            <div class="metric">
+              Result: 3× increase in qualified leads in 8 weeks
+            </div>
+          </article>
+
+          <article class="card-case" aria-labelledby="cs3">
+            <img src="./images/customer.jpeg" alt="SupportFlow screenshot" />
+            <div class="card-content">
+              <h3 id="cs3">
+                SupportSage — Support that scales without killing margins
+              </h3>
+              <p>
+                <strong>Challenge:</strong> Growing SaaS company facing soaring
+                customer support costs and deteriorating response times as user
+                base expanded.
+              </p>
+              <p>
+                <em>Solution:</em> Implemented an intelligent multi-channel
+                support system that automatically handles routine inquiries
+                while identifying critical issues for human escalation —
+                improving both efficiency and customer satisfaction.
+              </p>
+            </div>
+            <div class="metric">
+              Result: 60% ticket automation with NPS improvement
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Who we are -->
+      <section id="who">
+        <div class="who">
+          <div class="who-content">
+            <h3 style="margin: 0 0 6px; font-family: Sora">
+              We're the minds behind market products and open-source tools.
+            </h3>
+            <p style="margin: 0; color: rgba(11, 18, 32, 0.8)">
+              We are the team behind RectLab and Trackus — creators of Danfo.js
+              and TMLops - builders who move from research to revenue.
+            </p>
+          </div>
+          <div class="badges">
+            <a class="badge" href="#">RectLab</a>
+            <a class="badge" href="#">Trackus</a>
+            <a class="badge" href="#">Danfo.js</a>
+            <a class="badge" href="#">TMOST</a>
+          </div>
+        </div>
+
+        <style>
+          .who {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0.6),
+              transparent
+            );
+          }
+
+          .who-content {
+            flex: 1;
+          }
+
+          .badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+          }
+
+          @media (max-width: 768px) {
+            .who {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 18px;
+            }
+
+            .who-content {
+              width: 100%;
+            }
+
+            .badges {
+              width: 100%;
+              justify-content: flex-start;
+            }
+          }
+        </style>
+      </section>
+
+      <!-- Founders -->
+      <section>
+        <h3 style="font-family: Sora">Founders & Core Team</h3>
+        <p style="margin: 6px 0 0; color: rgba(11, 18, 32, 0.75)">
+          Operator experience, research depth, and production engineering —
+          combined.
+        </p>
+
+        <div class="founders">
+          <div class="founder" tabindex="0">
+            <img src="./images/elisha.jpeg" alt="Founder 1 headshot" />
+            <h4>[Elisha Odemakinde]</h4>
+            <p>CEO · Product & GTM</p>
+            <div class="meta">
+              Built & scaled B2B SaaS GTM · Led ML product launches
+            </div>
+          </div>
+
+          <div class="founder" tabindex="0">
+            <img src="./images/yemi.jpg" alt="Founder 2 headshot" />
+            <h4>[Opeyemi Bamigbade]</h4>
+            <p>Head of Research · PhD Candidate</p>
+            <div class="meta">
+              Published researcher · AI Engineer · Computer Vision, RAG & LLM
+              systems
+            </div>
+          </div>
+
+          <div class="founder" tabindex="0">
+            <img src="./images/steve.jpeg" alt="Founder 3 headshot" />
+            <h4>[Stephen Oni]</h4>
+            <p>Engineering Lead · Systems</p>
+            <div class="meta">
+              Model infra · OpenSource · Author · Built & scaled Data
+              portal/systems for public & private sectors
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials & logos -->
+      <section id="contact">
+        <h3 style="font-family: Sora">Trusted by</h3>
+        <div class="logos" style="margin-top: 12px">
+          <div class="logo-spot">EarlyPartnerCo</div>
+          <div class="logo-spot">Acme Legal</div>
+          <div class="logo-spot">FinServ Labs</div>
+          <div class="logo-spot">RetailX</div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section
+        class="cta-banner"
+        aria-label="Contact banner"
+        id="contact"
+        style="margin-top: 26px">
+        <style>
+          .cta-banner {
+            margin: 28px 0 100px;
+            background: linear-gradient(90deg, var(--navy), #0b355e);
+            color: white;
+            padding: 32px 36px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+          }
+
+          .cta-content {
+            flex: 1;
+            min-width: 280px;
+            padding-right: 16px;
+          }
+
+          .cta-content .small {
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+
+          .cta-button {
+            white-space: nowrap;
+          }
+
+          @media (max-width: 600px) {
+            .cta-banner {
+              padding: 28px 24px;
+            }
+
+            .cta-content,
+            .cta-button {
+              width: 100%;
+              text-align: center;
+            }
+
+            .cta-button {
+              margin-top: 16px;
+            }
+          }
+        </style>
+        <div>
+          <div style="font-weight: 700; font-size: 18px">
+            Ready to estimate your AI impact?
+          </div>
+          <div class="small">
+            We’ll propose a focused pilot that targets measurable revenue or
+            cost outcomes - no slide decks required.
+          </div>
+        </div>
+        <div>
+          <a
+            class="btn btn-primary"
+            href="https://calendly.com/brassinai"
+            target="_blank" rel="noopener noreferrer"
+            >Book a 20-minute ROI call</a
+          >
+        </div>
+      </section>
+
+      <!-- Technical Articles -->
+      <section id="articles">
+        <h3 style="font-family: Sora">Technical Articles</h3>
+        <p style="margin: 6px 0 12px; color: rgba(11, 18, 32, 0.75)">
+          Deep, practical posts from our team
+        </p>
+
+        <style>
+          .article img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+
+          .hidden-articles {
+            display: none;
+          }
+
+          .hidden-articles.visible {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 18px;
+          }
+
+          @media (max-width: 1000px) {
+            .hidden-articles.visible {
+              grid-template-columns: 1fr;
+            }
+          }
+        </style>
+
+        <div class="articles">
+          <a
+            class="article"
+            href="https://medium.com/@elishatofunmi/trackus-coach-10x-better-formulating-better-winning-strategies-with-ai-292081cbfb27"
+            aria-labelledby="a1">
+            <img src="./images/fottball.webp" alt="strategies" />
+            <h4 id="a1">
+              Trackus — Coach 10x better, formulating better winning strategies
+              with AI
+            </h4>
+            <p class="author">[Elisha]</p>
+            <p>
+              Coaching is complex, requiring years of observation, analysis, and
+              feedback to guide players effectively - a process that’s often
+              slow and subjective. Trackus solves this by using AI to track
+              players in real time, generate tactical analytics, and deliver
+              actionable insights instantly. This allows coaches to make smarter
+              decisions, optimize strategies, and evaluate players objectively.
+              In short, Trackus makes coaching faster, more data-driven, and up
+              to ten times more effective.
+            </p>
+          </a>
+
+          <a
+            class="article"
+            href="https://heartbeat.comet.ml/building-production-machine-learning-systems-on-google-cloud-platform-part-1-959e0ad99b75"
+            aria-labelledby="a2">
+            <img
+              src="./images/container.webp"
+              alt="Building Production Machine Learning Systems" />
+            <h4 id="a2">
+              Building Production Machine Learning Systems on Google Cloud
+              Platform
+            </h4>
+            <p class="author">[Opeyemi]</p>
+            <p>
+              Most machine learning projects fail to move from prototypes to
+              production because teams struggle with scalability, monitoring,
+              and reliable deployment. This article addresses that challenge by
+              showing how Google Cloud Platform can be used to build
+              production-grade ML systems. It explains the problems with ad-hoc
+              training and serving, then introduces structured approaches for
+              static vs. dynamic training and inference. The main point is
+              creating a robust pipeline; covering training, serving, logging,
+              and monitoring, that ensures ML models are not just built but
+              consistently deliver value in real-world environments.
+            </p>
+          </a>
+
+          <a
+            class="article"
+            href="https://arxiv.org/pdf/2402.15448"
+            aria-labelledby="a3">
+            <img src="./images/eo3.jpeg" alt="Research paper" />
+            <h4 id="a3">
+              Computer vision for multimedia geolocation in human trafficking
+              investigation: A systematic literature review
+            </h4>
+            <p class="author">[Opeyemi]</p>
+            <p>
+              Investigators often struggle to trace human trafficking content
+              because multimedia files usually lack geolocation metadata. This
+              paper reviews computer vision and deep learning methods that infer
+              location directly from images and videos, bypassing that
+              limitation. Surveying 123 studies, it shows how AI can speed up
+              and strengthen digital forensics, offering faster,
+              metadata-independent location inference for law enforcement.
+            </p>
+          </a>
+        </div>
+
+        <p style="margin-top: 12px">
+          <a
+            href="#"
+            id="view-all-articles"
+            style="font-weight: 700; color: var(--accent)"
+            >View all articles →</a
+          >
+        </p>
+      </section>
+    </main>
+
+    <footer class="container">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        ">
+        <div>
+          <div style="font-weight: 700">Brassin</div>
+          <div style="font-size: 13px; color: rgba(11, 18, 32, 0.6)">
+            Warm Brass · Trust — Systems-first AI consulting
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center">
+          <a href="mailto:hello@brassin.ai">hello@brassin.ai</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+
+      <div
+        style="margin-top: 12px; color: rgba(11, 18, 32, 0.6); font-size: 13px">
+        © Brassin — Practical, systems-first AI engineering
+      </div>
+    </footer>
+
+    <!-- Lightweight JS for modals and smooth scroll -->
+    <script>
+      document
+        .querySelector(".mobile-menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.toggle("active");
+
+          // Toggle hamburger to X animation
+          const spans = this.querySelectorAll("span");
+          if (
+            document.querySelector(".nav-menu").classList.contains("active")
+          ) {
+            spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
+            spans[1].style.opacity = "0";
+            spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
+          } else {
+            spans[0].style.transform = "none";
+            spans[1].style.opacity = "1";
+            spans[2].style.transform = "none";
+          }
+        });
+
+      // Close menu when a link is clicked
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.remove("active");
+
+          // Reset hamburger icon
+          const spans = document.querySelectorAll(".mobile-menu-toggle span");
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+        });
+      });
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (href.length > 1) {
+            const el = document.querySelector(href);
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+
+      // Simple modal behavior (placeholder for technical appendices)
+      document.querySelectorAll("[data-modal]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = btn.getAttribute("data-modal");
+          // For now open a new tab to a placeholder or show alert
+          window.open("#" + id, "_blank");
+        });
+      });
+
+      document
+        .getElementById("view-all-articles")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const moreArticles = document.getElementById("more-articles");
+          moreArticles.classList.toggle("visible");
+
+          // Change button text based on state
+          if (moreArticles.classList.contains("visible")) {
+            this.textContent = "Show fewer articles ↑";
+          } else {
+            this.textContent = "View all articles →";
+          }
+        });
+    </script>
+  </body>
+</html>
