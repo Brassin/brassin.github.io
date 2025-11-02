@@ -1,3 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrassinAI — VLM • HPC • Compiler • General</title>
+  <style>
+    :root { --bg:#0f1115; --card:#151821; --ink:#e6e6e6; --muted:#9aa0aa; --accent:#7cc7ff; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+    header { padding: 24px 16px; border-bottom: 1px solid #222631; }
+    nav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    button.filter { border: 1px solid #2b3140; background: #111420; color: var(--ink); padding: 6px 10px; border-radius: 999px; cursor: pointer; }
+    button.filter[data-active="true"] { border-color: var(--accent); }
+    main { padding: 24px 16px; max-width: 1000px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    article { background: var(--card); border: 1px solid #1c2030; border-radius: 14px; padding: 14px; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; padding: 24px; border-top: 1px solid #222631; }
+  </style>
+</head>
 <body>
-    Brassin
+  <header>
+    <h1>BrassinAI</h1>
+    <nav>
+      <button class="filter" data-filter="all" data-active="true">All</button>
+      <button class="filter" data-filter="vlm">VLM</button>
+      <button class="filter" data-filter="hpc">HPC</button>
+      <button class="filter" data-filter="compiler">Compiler</button>
+      <button class="filter" data-filter="general">General</button>
+      <button class="filter" data-filter="other">Other</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="grid" id="posts">
+      <article data-cat="vlm">
+        <h2><a href="vlm/sample-vlm.html">[VLM] Sample Vision-Language Blog</a></h2>
+        <p>A dummy VLM post exploring multimodal models and embeddings.</p>
+        <div class="meta"><span class="badge">VLM</span><time datetime="2025-11-01">Nov 1, 2025</time></div>
+      </article>
+      <article data-cat="hpc">
+        <h2><a href="hpc/sample-hpc.html">[HPC] Sample High Performance Computing Blog</a></h2>
+        <p>Introductory dummy content about CUDA optimization and HPC workflows.</p>
+        <div class="meta"><span class="badge">HPC</span><time datetime="2025-11-01">Nov 1, 2025</time></div>
+      </article>
+      <article data-cat="compiler">
+        <h2><a href="compiler/sample-compiler.html">[Compiler] Sample Compiler Blog</a></h2>
+        <p>Dummy compiler post showing how IR works and how SSA form simplifies optimization.</p>
+        <div class="meta"><span class="badge">Compiler</span><time datetime="2025-11-01">Nov 1, 2025</time></div>
+      </article>
+      <article data-cat="general">
+        <h2><a href="general/sample-general.html">[General] Sample General Blog</a></h2>
+        <p>General topic dummy blog covering writing, productivity, and tools.</p>
+        <div class="meta"><span class="badge">General</span><time datetime="2025-11-01">Nov 1, 2025</time></div>
+      </article>
+      <article data-cat="other">
+        <h2><a href="other/sample-other.html">[Other] Sample Miscellaneous Blog</a></h2>
+        <p>Dummy entry for miscellaneous or cross-domain experiments and projects.</p>
+        <div class="meta"><span class="badge">Other</span><time datetime="2025-11-01">Nov 1, 2025</time></div>
+      </article>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> • Built with plain HTML</footer>
+
+  <script>
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const filters = document.querySelectorAll('button.filter');
+    const posts = document.querySelectorAll('#posts article');
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      filters.forEach(b => b.dataset.active = false);
+      btn.dataset.active = true;
+      const cat = btn.dataset.filter;
+      posts.forEach(a => {
+        a.style.display = (cat === 'all' || a.dataset.cat === cat) ? '' : 'none';
+      });
+    }));
+  </script>
 </body>
+</html>
+
+<!-- Dummy template for subfolder pages -->
+<!-- Example: vlm/sample-vlm.html -->
+<!--
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Category] Sample Blog</title>
+  <style>body{font-family:sans-serif;max-width:700px;margin:40px auto;padding:0 1em;line-height:1.6}</style>
+</head>
+<body>
+  <h1>[Category] Sample Blog Title</h1>
+  <p>This is a placeholder blog under the [Category] niche. Replace this file with your real blog content.</p>
+  <p><a href="../index.html">← Back to Home</a></p>
+</body>
+</html>
+-->
