@@ -1,0 +1,744 @@
+/* ===== BrassinAI — Dark Theme with Tufte-style Sidenotes ===== */
+:root {
+  --bg:         #0f1115;
+  --bg-alt:     #13151b;
+  --card:       #151821;
+  --surface:    #1c2030;
+  --ink:        #e8e6e3;
+  --ink-light:  #d0cec9;
+  --muted:      #8a90a0;
+  --accent:     #7cc7ff;
+  --accent-hover:#a4daff;
+  --accent-dim: rgba(124,199,255,.10);
+  --border:     #222631;
+  --border-light:#2a2f3d;
+  --highlight:  rgba(124,199,255,.06);
+
+  /* category colours */
+  --cat-vlm:       #a78bfa;
+  --cat-hpc:       #34d399;
+  --cat-compiler:  #f97316;
+  --cat-general:   #60a5fa;
+  --cat-other:     #fb923c;
+
+  /* typography */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Newsreader', 'Georgia', 'Times New Roman', serif;
+  --font-ui:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+  /* layout widths */
+  --content-w:  680px;
+  --margin-w:   260px;
+  --gap:        48px;
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+/* ---- Links — subtle underline that pops on hover ---- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(124,199,255,.25);
+  transition: color .15s, border-color .15s;
+}
+a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+  text-decoration: none;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ===== Layout ===== */
+.container { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+
+/* ===== Site Header ===== */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  background: var(--bg-alt);
+  font-family: var(--font-ui);
+}
+.header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand { text-decoration: none; border-bottom: none; }
+.wordmark {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.4px;
+  font-family: var(--font-heading);
+}
+.site-nav { display: flex; gap: 24px; }
+.site-nav a {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: color .15s;
+  border-bottom: none;
+}
+.site-nav a:hover { color: var(--ink); text-decoration: none; }
+
+/* ===== Filter Buttons (Homepage) ===== */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  font-family: var(--font-ui);
+}
+.filter-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-ui);
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ===== Post Grid (Homepage) ===== */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+.card h2 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.card h2 a { color: var(--ink); border-bottom: none; }
+.card h2 a:hover { color: var(--accent); text-decoration: none; }
+.card p {
+  color: var(--muted);
+  font-size: 14.5px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  color: var(--muted);
+}
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.badge-vlm       { background: rgba(167,139,250,.12); color: var(--cat-vlm); }
+.badge-hpc       { background: rgba(52,211,153,.12);  color: var(--cat-hpc); }
+.badge-compiler  { background: rgba(249,115,22,.12);  color: var(--cat-compiler); }
+.badge-general   { background: rgba(96,165,250,.12);  color: var(--cat-general); }
+.badge-other     { background: rgba(251,146,60,.12);  color: var(--cat-other); }
+
+/* ======================================================================
+   POST PAGE — Reading-optimized typography
+   ====================================================================== */
+
+/* ---- Back link ---- */
+.back-link {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-bottom: none;
+}
+.back-link:hover { color: var(--accent); text-decoration: none; }
+
+/* ---- Post Header ---- */
+.post-header {
+  max-width: var(--content-w);
+  margin-bottom: 44px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.post-header h1 {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Post Content — Newsreader body with generous rhythm ---- */
+.post-content {
+  max-width: var(--content-w);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--ink-light);
+  position: relative;
+  letter-spacing: 0.01em;
+}
+
+/* Headings — Inter, tight tracking, generous vertical space */
+.post-content h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 56px 0 18px;
+  color: #fff;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.post-content h3 {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 44px 0 14px;
+  color: var(--ink);
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.post-content h4 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 36px 0 12px;
+  color: var(--ink);
+  letter-spacing: -0.1px;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+/* Paragraphs — spacious rhythm */
+.post-content p {
+  margin-bottom: 24px;
+  word-spacing: 0.02em;
+}
+
+/* Make first paragraph after a heading slightly larger for reading flow */
+.post-content h2 + p,
+.post-content h3 + p {
+  font-size: 18.5px;
+}
+
+/* Lists */
+.post-content ul,
+.post-content ol {
+  margin: 0 0 24px 28px;
+}
+.post-content li {
+  margin-bottom: 8px;
+  line-height: 1.75;
+  padding-left: 4px;
+}
+.post-content li::marker {
+  color: var(--accent);
+}
+
+/* Bold & emphasis */
+.post-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.post-content em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+/* Links inside content */
+.post-content a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(124,199,255,.3);
+  transition: color .15s, border-color .15s;
+}
+.post-content a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+/* Blockquotes — warm, pulled-in feel */
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 16px 24px;
+  margin: 32px 0;
+  margin-left: -8px;
+  background: var(--highlight);
+  border-radius: 0 10px 10px 0;
+  color: var(--ink);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.7;
+}
+.post-content blockquote p:last-child { margin-bottom: 0; }
+
+/* Code — JetBrains Mono */
+.post-content code {
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.84em;
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.post-content pre {
+  background: var(--surface);
+  padding: 20px 24px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 28px 0;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.65;
+  font-family: var(--font-mono);
+}
+.post-content pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;               /* let Rouge token colors take over */
+}
+
+/* Rouge wrapper — Jekyll wraps code in div.highlighter-rouge > div.highlight > pre.highlight */
+.highlighter-rouge .highlight {
+  background: var(--surface);
+  border-radius: 10px;
+}
+div.highlighter-rouge {
+  margin: 28px 0;
+}
+div.highlighter-rouge pre.highlight {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 0;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.65;
+  font-family: var(--font-mono);
+}
+/* Language label */
+div.highlighter-rouge::before {
+  content: attr(class);
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 8px 24px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
+}
+div.highlighter-rouge pre.highlight {
+  border-radius: 0 0 10px 10px;
+}
+
+/* Tables — clean, Inter for headers */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 15px;
+}
+.post-content th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--border-light);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.post-content td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-light);
+  font-size: 15.5px;
+}
+.post-content tr:hover td { background: var(--highlight); }
+
+/* Images */
+.post-content img {
+  border-radius: 10px;
+  margin: 32px 0;
+}
+
+/* Horizontal rules — spacious */
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 52px 0;
+}
+
+/* ---- Table of Contents — inline, placed via toc include ---- */
+.toc {
+  max-width: var(--content-w);
+  margin: 28px 0 36px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--font-ui);
+}
+.toc details { padding: 18px 22px; }
+.toc summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::before {
+  content: '▸';
+  font-size: 12px;
+  color: var(--muted);
+  transition: transform .15s;
+}
+.toc details[open] summary::before { transform: rotate(90deg); }
+.toc summary h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 600;
+}
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.toc li { margin-bottom: 4px; }
+.toc li.toc-sub { padding-left: 16px; }
+.toc a {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+  display: block;
+  padding: 3px 0;
+  transition: color .15s;
+}
+.toc a:hover { color: var(--accent); text-decoration: none; }
+
+/* ---- Sidenotes / Margin Notes (Tufte-style) ---- */
+.sidenote-toggle { display: none; }
+.sidenote-label {
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 2px;
+}
+.sidenote-content {
+  float: right;
+  clear: right;
+  width: var(--margin-w);
+  margin-right: calc(-1 * (var(--margin-w) + var(--gap)));
+  margin-bottom: 16px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  position: relative;
+}
+/* Rich content inside sidenotes */
+.sidenote-content p {
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.sidenote-content p:last-child { margin-bottom: 0; }
+.sidenote-content img {
+  border-radius: 6px;
+  margin: 8px 0;
+  width: 100%;
+  height: auto;
+}
+.sidenote-content strong { color: var(--ink-light); }
+.sidenote-content em { font-style: italic; }
+.sidenote-content code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--surface);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.sidenote-content ul,
+.sidenote-content ol {
+  margin: 6px 0 6px 16px;
+  font-size: 13px;
+}
+.sidenote-content li { margin-bottom: 3px; }
+.sidenote-content a { border-bottom: 1px solid rgba(124,199,255,.25); }
+.sidenote-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 4px;
+  font-family: var(--font-ui);
+}
+
+/* ---- References — end of article ---- */
+.references {
+  max-width: var(--content-w);
+  margin-top: 52px;
+  padding: 26px 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-ui);
+}
+.references h3 {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.references ol {
+  padding-left: 20px;
+  margin: 0;
+}
+.references li {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.55;
+  color: var(--ink-light);
+}
+.references a { font-size: 14px; word-break: break-word; }
+
+/* ---- Post Footer ---- */
+.post-footer {
+  max-width: var(--content-w);
+  margin-top: 60px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-ui);
+}
+.post-footer a { font-weight: 600; font-size: 14px; border-bottom: none; }
+
+/* ===== Site Footer ===== */
+.site-footer {
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  text-align: center;
+  padding: 28px;
+  border-top: 1px solid var(--border);
+  margin-top: 52px;
+}
+
+/* ===== About Page ===== */
+.page-content {
+  max-width: var(--content-w);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.85;
+}
+.page-content h1 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+.page-content h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin: 40px 0 14px;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: -0.3px;
+}
+.page-content p  { margin-bottom: 22px; color: var(--ink-light); }
+.page-content ul { margin: 0 0 22px 28px; }
+.page-content li { margin-bottom: 8px; color: var(--ink-light); }
+
+/* ======================================================================
+   ROUGE SYNTAX HIGHLIGHTING — Dark theme (Monokai-inspired)
+   Rouge token classes: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+   ====================================================================== */
+.highlight .hll { background: rgba(124,199,255,.08); }
+.highlight .c,
+.highlight .ch,
+.highlight .cd,
+.highlight .cm,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs   { color: #6a737d; font-style: italic; } /* Comments */
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kv   { color: #ff79c6; }                     /* Keywords */
+.highlight .kt   { color: #8be9fd; font-style: italic; } /* Keyword Type (int, float) */
+
+.highlight .n    { color: var(--ink-light); }             /* Name */
+.highlight .na   { color: #50fa7b; }                      /* Name.Attribute */
+.highlight .nb   { color: #8be9fd; }                      /* Name.Builtin */
+.highlight .nc   { color: #50fa7b; }                      /* Name.Class */
+.highlight .nd   { color: #50fa7b; }                      /* Name.Decorator */
+.highlight .nf,
+.highlight .fm   { color: #50fa7b; }                      /* Name.Function */
+.highlight .ni   { color: var(--ink); }                   /* Name.Entity */
+.highlight .nn   { color: var(--ink-light); }             /* Name.Namespace */
+.highlight .no   { color: #bd93f9; }                      /* Name.Constant */
+.highlight .nt   { color: #ff79c6; }                      /* Name.Tag (HTML) */
+.highlight .nv,
+.highlight .vi,
+.highlight .vg   { color: #bd93f9; }                      /* Variables */
+.highlight .ne   { color: #ff5555; }                      /* Name.Exception */
+
+.highlight .s,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .s1,
+.highlight .ss   { color: #f1fa8c; }                     /* Strings */
+.highlight .dl   { color: #f1fa8c; }                      /* String.Delimiter */
+
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il   { color: #bd93f9; }                     /* Numbers */
+
+.highlight .o,
+.highlight .ow   { color: #ff79c6; }                     /* Operators */
+.highlight .p    { color: var(--ink-light); }             /* Punctuation */
+
+.highlight .gh   { color: #f8f8f2; font-weight: 600; }   /* Generic.Heading */
+.highlight .gu   { color: #6a737d; }                      /* Generic.Subheading */
+.highlight .gi   { color: #50fa7b; }                      /* Generic.Inserted (diff) */
+.highlight .gd   { color: #ff5555; }                      /* Generic.Deleted (diff) */
+.highlight .ge   { font-style: italic; }                  /* Generic.Emph */
+.highlight .gs   { font-weight: 700; }                    /* Generic.Strong */
+.highlight .gl   { text-decoration: underline; }          /* Generic.Lineno */
+
+.highlight .w    { color: var(--ink-light); }             /* Whitespace */
+.highlight .err  { color: #ff5555; }                      /* Error */
+
+/* ======================================================================
+   RESPONSIVE
+   ====================================================================== */
+@media (max-width: 960px) {
+  /* Sidenotes become inline toggleable footnotes */
+  .sidenote-content {
+    float: none;
+    display: none;
+    width: 100%;
+    margin: 10px 0 18px;
+    padding: 14px 18px;
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .sidenote-toggle:checked + .sidenote-content { display: block; }
+  .sidenote-label { cursor: pointer; }
+}
+
+@media (max-width: 600px) {
+  .post-grid { grid-template-columns: 1fr; }
+  .post-header h1 { font-size: 30px; }
+  .post-content { font-size: 16.5px; }
+  .post-content h2 { font-size: 24px; margin-top: 40px; }
+  .post-content h3 { font-size: 20px; }
+  .post-content blockquote { font-size: 17px; }
+  .header-inner { flex-direction: column; gap: 10px; }
+  body { font-size: 16px; }
+}

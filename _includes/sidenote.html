@@ -1,0 +1,1 @@
+<span class="sidenote"{% if include.ref %} data-ref="{{ include.ref }}" data-ref-title="{{ include.ref_title }}"{% endif %}>{% if include.text %}{{ include.text | markdownify | replace: '<p>', '' | replace: '</p>', '' | strip }}{% else %}{{ include.content }}{% endif %}</span>

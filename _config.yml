@@ -1,0 +1,39 @@
+# Site settings
+title: BrassinAI
+description: "VLM • HPC • Compiler • General — Technical articles by BrassinAI"
+url: "https://brassinai.com"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Collections / Categories
+collections_dir: ""
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins (GitHub Pages supported)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor
+  - _old_backup

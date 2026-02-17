@@ -1,0 +1,99 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <a href="{{ '/' | relative_url }}" class="back-link">← Back to Home</a>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <span class="badge badge-{{ page.category | downcase }}">{{ page.category }}</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      {% if page.author %}
+      <span class="author">· {{ page.author }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content" id="post-content">
+    {{ content }}
+  </div>
+
+  <!-- References (auto-populated from sidenotes with data-ref) -->
+  <section class="references" id="references">
+    <h3>References</h3>
+    <ol id="ref-list"></ol>
+  </section>
+
+  <footer class="post-footer">
+    <a href="{{ '/' | relative_url }}">← Back to Home</a>
+  </footer>
+</article>
+
+<script>
+// Auto-generate Table of Contents from headings
+(function() {
+  const toc = document.getElementById('toc');
+  if (!toc) return;                     // no toc include in this post
+  const tocNav = document.getElementById('toc-nav');
+  const content = document.getElementById('post-content');
+  const headings = content.querySelectorAll('h2, h3');
+  if (headings.length < 2) {
+    toc.style.display = 'none';
+    return;
+  }
+  headings.forEach((h, i) => {
+    if (!h.id) h.id = 'heading-' + i;
+    const li = document.createElement('li');
+    li.className = h.tagName === 'H3' ? 'toc-sub' : '';
+    const a  = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    tocNav.appendChild(li);
+  });
+})();
+
+// Wire up sidenotes: convert .sidenote elements into margin notes
+(function() {
+  const notes = document.querySelectorAll('.sidenote');
+  notes.forEach((note, i) => {
+    const num = i + 1;
+    const label = document.createElement('label');
+    label.className = 'sidenote-label';
+    label.setAttribute('for', 'sn-' + num);
+    label.textContent = num;
+
+    const toggle = document.createElement('input');
+    toggle.type = 'checkbox';
+    toggle.id = 'sn-' + num;
+    toggle.className = 'sidenote-toggle';
+
+    note.classList.add('sidenote-content');
+    const span = document.createElement('span');
+    span.className = 'sidenote-number';
+    span.textContent = num;
+    note.prepend(span);
+
+    note.parentNode.insertBefore(label, note);
+    note.parentNode.insertBefore(toggle, note);
+  });
+
+  // Populate references section at bottom of page
+  const refList = document.getElementById('ref-list');
+  const refs = document.querySelectorAll('.sidenote-content[data-ref]');
+  if (refs.length === 0) {
+    document.getElementById('references').style.display = 'none';
+    return;
+  }
+  refs.forEach((ref, i) => {
+    const li = document.createElement('li');
+    const a  = document.createElement('a');
+    a.href = ref.dataset.ref;
+    a.textContent = ref.dataset.refTitle || ref.dataset.ref;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    li.appendChild(a);
+    refList.appendChild(li);
+  });
+})();
+</script>
