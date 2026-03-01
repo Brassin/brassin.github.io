@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title | default: site.title }}</title>
+
+  <!-- Fonts: same as main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  {% seo %}
+
+  <style>
+    /* ===== CSS Variables (matching BrassinAI theme) ===== */
+    :root {
+      --bg:          #0f1115;
+      --bg-alt:      #13151b;
+      --card:        #151821;
+      --surface:     #1c2030;
+      --ink:         #e8e6e3;
+      --ink-light:   #d0cec9;
+      --muted:       #8a90a0;
+      --accent:      #7cc7ff;
+      --accent-hover:#a4daff;
+      --accent-dim:  rgba(124,199,255,.10);
+      --border:      #222631;
+      --border-light:#2a2f3d;
+
+      --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body:    'Newsreader', 'Georgia', 'Times New Roman', serif;
+      --font-ui:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    /* ===== Slide Container ===== */
+    .slide-deck {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateX(40px);
+      padding: 60px 80px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .slide.exit-left {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-40px);
+    }
+
+    .slide-inner {
+      max-width: 900px;
+      width: 100%;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    /* Hide scrollbar but keep scrollable */
+    .slide-inner::-webkit-scrollbar { width: 4px; }
+    .slide-inner::-webkit-scrollbar-track { background: transparent; }
+    .slide-inner::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+    /* ===== Typography inside slides ===== */
+    .slide h1 {
+      font-family: var(--font-heading);
+      font-size: 2.8em;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 0.5em;
+      color: var(--ink);
+    }
+
+    .slide h2 {
+      font-family: var(--font-heading);
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+      color: var(--ink);
+    }
+
+    .slide h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4em;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.4em;
+      color: var(--ink-light);
+    }
+
+    .slide p {
+      margin-bottom: 0.9em;
+      color: var(--ink-light);
+      font-size: 1.1em;
+    }
+
+    .slide ul, .slide ol {
+      margin: 0.6em 0 1em 1.5em;
+      color: var(--ink-light);
+      font-size: 1.1em;
+    }
+
+    .slide li { margin-bottom: 0.4em; }
+
+    .slide strong { color: var(--ink); font-weight: 600; }
+    .slide em { font-style: italic; }
+
+    .slide blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.5em 1.2em;
+      margin: 1em 0;
+      background: var(--accent-dim);
+      border-radius: 0 6px 6px 0;
+      color: var(--ink-light);
+      font-size: 1.05em;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 60vh;
+      height: auto;
+      display: block;
+      margin: 1em auto;
+      border-radius: 8px;
+    }
+
+    /* ===== Code blocks ===== */
+    .slide code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    .slide pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2em 1.4em;
+      margin: 1em 0;
+      overflow-x: auto;
+      font-size: 0.85em;
+      line-height: 1.55;
+    }
+
+    .slide pre code {
+      background: none;
+      padding: 0;
+      color: var(--ink-light);
+      font-size: 1em;
+    }
+
+    /* ===== Title slide (first slide) ===== */
+    .slide.title-slide {
+      text-align: center;
+    }
+
+    .slide.title-slide h1 {
+      font-size: 3.2em;
+      background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .slide.title-slide .slide-meta {
+      font-family: var(--font-ui);
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-top: 1em;
+    }
+
+    .slide.title-slide .slide-meta span {
+      margin: 0 0.5em;
+    }
+
+    /* ===== Navigation Controls ===== */
+    .slide-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: linear-gradient(transparent, rgba(15,17,21,0.95));
+      z-index: 100;
+      font-family: var(--font-ui);
+    }
+
+    .slide-nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-nav button {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.15s;
+      font-family: var(--font-ui);
+    }
+
+    .slide-nav button:hover {
+      background: var(--border-light);
+      color: var(--ink);
+      border-color: var(--border-light);
+    }
+
+    .slide-nav button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .slide-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 0.35s ease;
+      z-index: 101;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .slide-home {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      border: 1px solid var(--border-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+
+    .slide-home:hover {
+      color: var(--ink);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ===== Brand Logo (top-left) ===== */
+    .slide-brand {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      z-index: 102;
+      text-decoration: none;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .slide-brand:hover .slide-brand-text {
+      color: var(--ink);
+    }
+
+    .slide-brand-text {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: -0.3px;
+      transition: color 0.15s;
+    }
+
+    /* ===== Help Tooltip ===== */
+    .slide-help {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 102;
+    }
+
+    .slide-help button {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+
+    .slide-help button:hover {
+      color: var(--ink);
+      border-color: var(--border-light);
+    }
+
+    .slide-help-popup {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--ink-light);
+      min-width: 200px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .slide-help-popup.show { display: block; }
+
+    .slide-help-popup kbd {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      margin-right: 6px;
+    }
+
+    .slide-help-popup p {
+      margin: 6px 0;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .slide {
+        padding: 40px 24px;
+      }
+
+      .slide h1 { font-size: 2em; }
+      .slide h2 { font-size: 1.5em; }
+      .slide.title-slide h1 { font-size: 2.2em; }
+      .slide p, .slide ul, .slide ol { font-size: 1em; }
+    }
+
+    @media (max-width: 480px) {
+      .slide {
+        padding: 30px 16px;
+      }
+
+      .slide h1 { font-size: 1.6em; }
+      .slide.title-slide h1 { font-size: 1.8em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="slide-progress" id="progress"></div>
+
+  <!-- Brand logo (top-left) -->
+  <a href="{{ '/' | relative_url }}" class="slide-brand" title="Back to BrassinAI">
+    <span class="slide-brand-text">BrassinAI</span>
+  </a>
+
+  <!-- Help button -->
+  <div class="slide-help">
+    <button onclick="toggleHelp()" title="Keyboard shortcuts">?</button>
+    <div class="slide-help-popup" id="help-popup">
+      <p><kbd>→</kbd> Next slide</p>
+      <p><kbd>←</kbd> Previous slide</p>
+      <p><kbd>Home</kbd> First slide</p>
+      <p><kbd>End</kbd> Last slide</p>
+      <p><kbd>Esc</kbd> Back to blog</p>
+    </div>
+  </div>
+
+  <!-- Slide deck: content is split by <hr> tags -->
+  <div class="slide-deck" id="slide-deck">
+    <div class="slide-raw-content" id="raw-content" style="display:none;">
+      {{ content }}
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="slide-nav">
+    <a href="{{ '/' | relative_url }}" class="slide-home">← Blog</a>
+
+    <div class="slide-nav-buttons">
+      <button id="btn-prev" onclick="prevSlide()" title="Previous (←)">‹</button>
+      <span class="slide-counter" id="counter">1 / 1</span>
+      <button id="btn-next" onclick="nextSlide()" title="Next (→)">›</button>
+    </div>
+
+    <span style="min-width:70px;"></span>
+  </nav>
+
+  <script>
+    // ===== Split content into slides by <hr> =====
+    const raw = document.getElementById('raw-content');
+    const deck = document.getElementById('slide-deck');
+    const counter = document.getElementById('counter');
+    const progress = document.getElementById('progress');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    // Split on <hr> / <hr /> tags
+    const parts = raw.innerHTML.split(/<hr\s*\/?>/i);
+
+    const slides = [];
+    parts.forEach((html, i) => {
+      const trimmed = html.trim();
+      if (!trimmed) return;
+
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (i === 0 ? ' title-slide' : '');
+
+      const inner = document.createElement('div');
+      inner.className = 'slide-inner';
+      inner.innerHTML = trimmed;
+
+      // If first slide (title slide), wrap metadata
+      if (i === 0) {
+        const meta = document.createElement('div');
+        meta.className = 'slide-meta';
+        {% if page.date %}
+        meta.innerHTML += '<span>{{ page.date | date: "%B %d, %Y" }}</span>';
+        {% endif %}
+        {% if page.author %}
+        meta.innerHTML += '<span>·</span><span>{{ page.author }}</span>';
+        {% endif %}
+        inner.appendChild(meta);
+      }
+
+      slide.appendChild(inner);
+      deck.appendChild(slide);
+      slides.push(slide);
+    });
+
+    // Remove the raw content
+    raw.remove();
+
+    let current = 0;
+
+    function showSlide(n) {
+      if (n < 0 || n >= slides.length) return;
+
+      const prev = current;
+      current = n;
+
+      slides.forEach((s, i) => {
+        s.classList.remove('active', 'exit-left');
+        if (i < current) s.classList.add('exit-left');
+      });
+      slides[current].classList.add('active');
+
+      // Update counter
+      counter.textContent = (current + 1) + ' / ' + slides.length;
+
+      // Update progress
+      const pct = slides.length > 1
+        ? ((current) / (slides.length - 1)) * 100
+        : 100;
+      progress.style.width = pct + '%';
+
+      // Update buttons
+      btnPrev.disabled = current === 0;
+      btnNext.disabled = current === slides.length - 1;
+
+      // Update URL hash
+      history.replaceState(null, '', '#' + (current + 1));
+    }
+
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    // ===== Keyboard navigation =====
+    document.addEventListener('keydown', function(e) {
+      // Don't intercept if user is in an input/textarea
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          nextSlide();
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          prevSlide();
+          break;
+        case 'Home':
+          e.preventDefault();
+          showSlide(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          showSlide(slides.length - 1);
+          break;
+        case 'Escape':
+          window.location.href = '{{ "/" | relative_url }}';
+          break;
+      }
+    });
+
+    // ===== Touch / Swipe support =====
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // ===== Help popup =====
+    function toggleHelp() {
+      document.getElementById('help-popup').classList.toggle('show');
+    }
+
+    // Close help when clicking elsewhere
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.slide-help')) {
+        document.getElementById('help-popup').classList.remove('show');
+      }
+    });
+
+    // ===== Init: check hash or start at slide 1 =====
+    (function() {
+      const hash = window.location.hash;
+      let start = 0;
+      if (hash) {
+        const n = parseInt(hash.replace('#', ''), 10);
+        if (!isNaN(n) && n >= 1 && n <= slides.length) {
+          start = n - 1;
+        }
+      }
+      showSlide(start);
+    })();
+  </script>
+
+</body>
+</html>
