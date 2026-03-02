@@ -18,3 +18,5 @@ Gemfile.lock
 
 # Old backup
 _old_backup/
+
+.DS_Store
