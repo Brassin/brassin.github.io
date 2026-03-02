@@ -61,3 +61,10 @@ How to submit changes.
 ## Conclusion
 
 Documentation isn't a chore — it's a force multiplier. A well-written README saves more time than any clever abstraction.
+
+
+```python
+
+print("hello stevo)
+
+```
