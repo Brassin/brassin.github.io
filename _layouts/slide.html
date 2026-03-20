@@ -409,6 +409,47 @@
       .slide h1 { font-size: 1.6em; }
       .slide.title-slide h1 { font-size: 1.8em; }
     }
+
+    /* ===== Tables ===== */
+    .slide table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-family: var(--font-ui);
+      font-size: 0.95em;
+    }
+
+    .slide table thead tr {
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .slide table th {
+      padding: 0.6em 1em;
+      text-align: left;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .slide table td {
+      padding: 0.55em 1em;
+      color: var(--ink-light);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .slide table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .slide table tbody tr:hover {
+      background: var(--accent-dim);
+    }
+
+    .slide table code {
+      font-size: 0.85em;
+    }
   </style>
 </head>
 <body>
