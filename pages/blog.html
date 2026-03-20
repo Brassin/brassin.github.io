@@ -1,0 +1,49 @@
+---
+layout: default
+title: "BrassinAI — VLM • HPC • Compiler • General"
+---
+
+<h1>Research • Blogposts • Presentations</h1>
+
+<nav class="filters" id="filters">
+  <button class="filter-btn" data-filter="agentic">Agentic AI</button>
+  <button class="filter-btn" data-filter="rag">RAG</button>
+  <button class="filter-btn" data-filter="multimodal">Multimodal AI</button>
+  <button class="filter-btn" data-filter="hpc">HPC</button>
+  <button class="filter-btn" data-filter="general">General</button>
+  <button class="filter-btn active" data-filter="all">All</button>
+</nav>
+
+<section class="post-grid" id="posts">
+  {% assign sorted = site.posts | sort: "date" | reverse %} {% for post in
+  sorted %}
+  <div class="card" data-cat="{{ post.category | downcase }}">
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    <div class="meta">
+      <span class="badge badge-{{ post.category | downcase }}"
+        >{{ post.category }}</span
+      >
+      <time datetime="{{ post.date | date_to_xmlschema }}"
+        >{{ post.date | date: "%b %d, %Y" }}</time
+      >
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<script>
+  const filters = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll("#posts .card");
+
+  filters.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      filters.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const cat = btn.dataset.filter;
+      cards.forEach((c) => {
+        c.style.display = cat === "all" || c.dataset.cat === cat ? "" : "none";
+      });
+    }),
+  );
+</script>

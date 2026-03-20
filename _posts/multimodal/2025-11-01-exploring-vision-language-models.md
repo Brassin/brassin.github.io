@@ -28,12 +28,12 @@ The key insight behind VLMs is that both images and text can be represented as d
 
 ### Popular Architectures
 
-| Model | Approach |
-|-------|----------|
-| CLIP  | Contrastive learning on image-text pairs |
-| BLIP-2 | Frozen image encoder + LLM bridge |
-| LLaVA | Visual instruction tuning |
-| Flamingo | Few-shot visual language model |
+| Model    | Approach                                 |
+| -------- | ---------------------------------------- |
+| CLIP     | Contrastive learning on image-text pairs |
+| BLIP-2   | Frozen image encoder + LLM bridge        |
+| LLaVA    | Visual instruction tuning                |
+| Flamingo | Few-shot visual language model           |
 
 CLIP was a watershed moment for the field. {% include sidenote.html text="Radford et al. (2021) showed that contrastive pre-training on 400M image-text pairs enables zero-shot transfer that rivals supervised models on many benchmarks." ref="https://arxiv.org/abs/2103.00020" ref_title="Learning Transferable Visual Models From Natural Language Supervision (CLIP)" %} Its simplicity — just align image and text encoders via a contrastive loss — belied its remarkable generalization ability.
 

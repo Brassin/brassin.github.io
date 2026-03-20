@@ -1,43 +1,303 @@
----
-layout: default
-title: "BrassinAI — VLM • HPC • Compiler • General"
----
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BrassinAI</title>
 
-<h1>BrassinAI</h1>
+    <!-- Shared Typography System -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-<nav class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="vlm">VLM</button>
-  <button class="filter-btn" data-filter="hpc">HPC</button>
-  <button class="filter-btn" data-filter="compiler">Compiler</button>
-  <button class="filter-btn" data-filter="general">General</button>
-  <button class="filter-btn" data-filter="other">Other</button>
-</nav>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --card: #151821;
+        --ink: #e6e6e6;
+        --muted: #8b93a3;
+        --accent: #7cc7ff;
+      }
 
-<section class="post-grid" id="posts">
-  {% assign sorted = site.posts | sort: "date" | reverse %}
-  {% for post in sorted %}
-  <div class="card" data-cat="{{ post.category | downcase }}">
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-    <div class="meta">
-      <span class="badge badge-{{ post.category | downcase }}">{{ post.category }}</span>
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Newsreader", Georgia, serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Navigation */
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.4px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .brand img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .brand:hover {
+        opacity: 0.8;
+      }
+
+      .blog-btn {
+        font-family: "Inter", sans-serif;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        background: rgba(124, 199, 255, 0.08);
+        color: var(--accent);
+        transition: all 0.2s ease;
+      }
+
+      .blog-btn:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      /* Hero */
+
+      .hero {
+        max-width: 900px;
+        margin: 60px auto 70px;
+        padding: 0 24px;
+        text-align: center;
+      }
+
+      .hero .primary {
+        font-family: "Inter", sans-serif;
+        font-size: 42px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .hero .sub-primary {
+        font-family: "Inter", sans-serif;
+        font-size: 26px;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+
+      .hero .secondary {
+        margin-top: 30px;
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      .hero .tertiary {
+        margin-top: 12px;
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      /* Center Icon with Glow */
+
+      .center-icon {
+        display: flex;
+        justify-content: center;
+        margin: 45px 0 45px;
+        position: relative;
+      }
+
+      .center-icon::before {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 199, 255, 0.15) 0%,
+          rgba(124, 199, 255, 0.05) 40%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .center-icon img {
+        width: 140px;
+        height: auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Focus Area Cards */
+
+      .carousel-wrapper {
+        padding: 0 24px 70px;
+      }
+
+      .carousel-track {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .card {
+        width: 240px;
+        background: var(--card);
+        border: 1px solid #1c2030;
+        border-radius: 16px;
+        padding: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: border 0.2s ease, transform 0.2s ease;
+      }
+
+      .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+
+      .card h3 {
+        font-family: "Inter", sans-serif;
+        margin: 0 0 10px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        font-family: "Newsreader", Georgia, serif;
+      }
+
+      /* CTA */
+
+      .cta {
+        text-align: center;
+        margin: 10px 0 90px;
+      }
+
+      .cta a {
+        font-family: "Inter", sans-serif;
+        text-decoration: none;
+        padding: 13px 28px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .cta a:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      footer {
+        margin-top: auto;
+        border-top: 1px solid #1c2030;
+        text-align: center;
+        padding: 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <div class="nav">
+      <a href="index.html" class="brand">
+        <img src="images/legacy/brassin2.jpg" alt="BrassinAI Logo" />
+        BrassinAI
+      </a>
+
+      <a href="pages/blog" class="blog-btn">Blog</a>
     </div>
-  </div>
-  {% endfor %}
-</section>
 
-<script>
-  const filters = document.querySelectorAll('.filter-btn');
-  const cards   = document.querySelectorAll('#posts .card');
+    <section class="hero">
+      <div class="primary">Modular-First AI Systems</div>
+      <div class="sub-primary">Research & Development</div>
 
-  filters.forEach(btn => btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat = btn.dataset.filter;
-    cards.forEach(c => {
-      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
-    });
-  }));
-</script>
+      <div class="center-icon">
+        <img src="images/legacy/modular2.png" alt="BrassinAI Icon" />
+      </div>
+
+      <div class="secondary">
+        Pluggable extensions · Composable libraries · Modular frameworks
+      </div>
+
+      <div class="tertiary">
+        Built for scale • Engineered for reliability • Optimised for performance
+      </div>
+    </section>
+
+    <section class="carousel-wrapper">
+      <div class="carousel-track">
+        <a href="pages/blog" class="card">
+          <h3>Agentic AI</h3>
+          <p>
+            Execution control and modular orchestration for reliable intelligent systems.
+          </p>
+        </a>
+
+        <a href="pages/blog#rag" class="card">
+          <h3>RAG Systems</h3>
+          <p>
+            Retrieval pipelines and performance-aware grounding architectures.
+          </p>
+        </a>
+
+        <a href="pages/blog#multimodal" class="card">
+          <h3>Multimodal AI</h3>
+          <p>
+            Vision–language integration and scalable representation learning.
+          </p>
+        </a>
+
+        <a href="pages/blog#hpc" class="card">
+          <h3>High-Performance AI</h3>
+          <p>Distributed execution and GPU-level optimisation.</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="cta">
+      <a href="mailto:hello@brassinai.com">Get in Touch</a>
+    </div>
+
+    <footer>© <span id="year"></span> BrassinAI</footer>
+
+    <script>
+      document.querySelector("#year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
