@@ -1,11 +1,35 @@
-<header class="site-header">
-  <div class="header-inner">
+<nav class="topnav">
+  <div class="nav-inner">
     <a href="{{ '/' | relative_url }}" class="brand">
-      <span class="wordmark">BrassinAI</span>
+      <img src="{{ '/images/legacy/brassin2.jpg' | relative_url }}" alt="BrassinAI" />
+      BrassinAI
     </a>
-    <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}">Blog</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-    </nav>
+    <ul class="nav-links">
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/pages/blog/' | relative_url }}" {% if page.url contains '/pages/blog' %}class="nav-active"{% endif %}>Blog</a></li>
+      <li><a href="{{ '/#products' | relative_url }}">Projects</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle menu" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</header>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <a href="{{ '/pages/blog/' | relative_url }}">Blog</a>
+    <a href="{{ '/#products' | relative_url }}">Projects</a>
+  </div>
+</nav>
+<script>
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+      });
+    }
+  })();
+</script>

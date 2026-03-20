@@ -1,49 +1,56 @@
 ---
 layout: default
-title: "BrassinAI — VLM • HPC • Compiler • General"
+title: "BrassinAI — Research & Notes"
 ---
 
-<h1>Research • Blogposts • Presentations</h1>
-
-<nav class="filters" id="filters">
-  <button class="filter-btn" data-filter="agentic">Agentic AI</button>
-  <button class="filter-btn" data-filter="rag">RAG</button>
-  <button class="filter-btn" data-filter="multimodal">Multimodal AI</button>
-  <button class="filter-btn" data-filter="hpc">HPC</button>
-  <button class="filter-btn" data-filter="general">General</button>
-  <button class="filter-btn active" data-filter="all">All</button>
-</nav>
-
-<section class="post-grid" id="posts">
-  {% assign sorted = site.posts | sort: "date" | reverse %} {% for post in
-  sorted %}
-  <div class="card" data-cat="{{ post.category | downcase }}">
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-    <div class="meta">
-      <span class="badge badge-{{ post.category | downcase }}"
-        >{{ post.category }}</span
-      >
-      <time datetime="{{ post.date | date_to_xmlschema }}"
-        >{{ post.date | date: "%b %d, %Y" }}</time
-      >
-    </div>
+<div class="blog-intro">
+  <div class="blog-hero">
+    <h1>Research &bull; Blogposts &bull; Presentations</h1>
   </div>
-  {% endfor %}
-</section>
+
+  <nav class="filters" id="filters" aria-label="Filter posts by category">
+    <button class="filter-btn" data-filter="agentic">Agentic AI</button>
+    <button class="filter-btn" data-filter="rag">RAG</button>
+    <button class="filter-btn" data-filter="multimodal">Multimodal AI</button>
+    <button class="filter-btn" data-filter="hpc">HPC</button>
+    <button class="filter-btn" data-filter="general">General</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+  </nav>
+
+  <div class="post-grid" id="posts">
+    {% assign sorted = site.posts | sort: "date" | reverse %}
+    {% for post in sorted %}
+    <a href="{{ post.url | relative_url }}" class="card" data-cat="{{ post.category | downcase }}" style="text-decoration:none;color:inherit;">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
+      <div class="meta">
+        <span class="badge badge-{{ post.category | downcase }}">{{ post.category | upcase }}</span>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <p class="post-feed-empty" id="feed-empty" hidden>No posts in this category yet.</p>
+</div>
 
 <script>
-  const filters = document.querySelectorAll(".filter-btn");
+  const filterBtns = document.querySelectorAll(".filter-btn");
   const cards = document.querySelectorAll("#posts .card");
+  const empty = document.getElementById("feed-empty");
 
-  filters.forEach((btn) =>
+  filterBtns.forEach(btn =>
     btn.addEventListener("click", () => {
-      filters.forEach((b) => b.classList.remove("active"));
+      filterBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       const cat = btn.dataset.filter;
-      cards.forEach((c) => {
-        c.style.display = cat === "all" || c.dataset.cat === cat ? "" : "none";
+      let visible = 0;
+      cards.forEach(card => {
+        const show = cat === "all" || card.dataset.cat === cat;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
       });
-    }),
+      empty.hidden = visible > 0;
+    })
   );
 </script>

@@ -1,4 +1,52 @@
-<footer class="site-footer">
-  <p>&copy; <span id="year"></span> BrassinAI </p>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<footer class="site-footer-full">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand">
+        <img src="{{ '/images/legacy/brassin2.jpg' | relative_url }}" alt="BrassinAI" />
+        BrassinAI
+      </div>
+      <p class="footer-desc">Modular-first AI engineering. We build systems that are reliable, observable, and designed to compound.</p>
+      <div class="footer-social">
+        <a href="https://twitter.com/brassinai" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://linkedin.com/company/brassinai" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+        <a href="https://github.com/brassin" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener">⌥</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="{{ '/#services' | relative_url }}">Agentic AI</a></li>
+        <li><a href="{{ '/#services' | relative_url }}">RAG Systems</a></li>
+        <li><a href="{{ '/#services' | relative_url }}">GPU Optimisation</a></li>
+        <li><a href="{{ '/#services' | relative_url }}">AI Strategy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="{{ '/#team' | relative_url }}">Team</a></li>
+        <li><a href="{{ '/pages/blog/' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/#products' | relative_url }}">Projects</a></li>
+        <li><a href="{{ '/#contact' | relative_url }}">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="https://calendly.com/brassinai" target="_blank" rel="noopener">Book a call</a></li>
+        <li><a href="mailto:hello@brassinai.com">hello@brassinai.com</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="footer-year"></span> BrassinAI — Practical, systems-first AI engineering</span>
+    <span>Built with care. Shipped with purpose.</span>
+  </div>
 </footer>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
