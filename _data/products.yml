@@ -1,0 +1,39 @@
+- img:    "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=80"
+  alt:    "Devocle — RAG-Powered Debugging for DevOps"
+  tag:    "DevOps · RAG"
+  title:  "Devocle — RAG-Powered Debugging for DevOps"
+  desc:   "Fine-tuned RAG system that turns raw Nginx log errors into actionable fixes — served via vLLM on Modal and delivered as a Docker Desktop extension."
+  link:   "/mlops/devocle-a-template-for-rag-devwork-integration/"
+  github: "https://github.com/Brassin/devocle"
+  status: "Live"
+  stack:
+    - vLLM
+    - Modal
+    - Docker
+    - RAG
+
+- img:    images/products/crm.jpeg
+  alt:    "S-Pilot — The CRM That Closes"
+  tag:    "Sales · Agentic AI"
+  title:  "S-Pilot — The CRM That Closes"
+  desc:   "Intelligent sales agent that qualifies leads, personalises outreach, and surfaces high-value prospects automatically."
+  link:   "#"
+  github: ""
+  status: "In Development"
+  stack:
+    - LangGraph
+    - FastAPI
+    - PostgreSQL
+
+- img:    images/products/support.jpeg
+  alt:    "SupportSage — Support at Scale"
+  tag:    "SaaS · Support Automation"
+  title:  "SupportSage — Support at Scale"
+  desc:   "Multi-channel intelligent support that handles routine queries and escalates critical issues — without killing margins."
+  link:   "#"
+  github: ""
+  status: "In Development"
+  stack:
+    - Agentic AI
+    - RAG
+    - WebSocket

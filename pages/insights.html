@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "BrassinAI — Research & Notes"
+title: "BrassinAI — Insights & Presentations"
 ---
 
 <div class="blog-intro">
   <div class="blog-hero">
-    <h1>Research &bull; Blogposts</h1>
-    <p class="blog-desc">Blog posts and research notes exploring our fields of interest.</p>
+    <h1>Insights &bull; Slides &bull; Presentations</h1>
+    <p class="blog-desc">Presentations and case studies from our work on specific projects.</p>
   </div>
 
-  <nav class="filters" id="filters" aria-label="Filter posts by category">
+  <nav class="filters" id="filters" aria-label="Filter slides by category">
     <button class="filter-btn" data-filter="agentic">Agentic AI</button>
     <button class="filter-btn" data-filter="rag">RAG</button>
     <button class="filter-btn" data-filter="multimodal">Multimodal AI</button>
@@ -21,7 +21,7 @@ title: "BrassinAI — Research & Notes"
   <div class="post-grid" id="posts">
     {% assign sorted = site.posts | sort: "date" | reverse %}
     {% for post in sorted %}
-    {% unless post.layout == "slide" %}
+    {% if post.layout == "slide" %}
     <a href="{{ post.url | relative_url }}" class="card" data-cat="{{ post.category | downcase }}" style="text-decoration:none;color:inherit;">
       <h2>{{ post.title }}</h2>
       <p>{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
@@ -30,11 +30,11 @@ title: "BrassinAI — Research & Notes"
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
       </div>
     </a>
-    {% endunless %}
+    {% endif %}
     {% endfor %}
   </div>
 
-  <p class="post-feed-empty" id="feed-empty" hidden>No posts in this category yet.</p>
+  <p class="post-feed-empty" id="feed-empty" hidden>No presentations in this category yet.</p>
 </div>
 
 <script>

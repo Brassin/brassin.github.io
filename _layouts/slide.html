@@ -217,6 +217,24 @@
       margin: 0 0.5em;
     }
 
+    .slide.title-slide .slide-meta .slide-authors {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin: 0 0.3em;
+    }
+
+    .slide.title-slide .slide-meta .slide-author-name {
+      color: var(--ink-light);
+      margin: 0;
+    }
+
+    .slide.title-slide .slide-meta .slide-author-sep {
+      color: var(--muted);
+      margin: 0 2px 0 0;
+    }
+
     /* ===== Navigation Controls ===== */
     .slide-nav {
       position: fixed;
@@ -526,7 +544,11 @@
         meta.innerHTML += '<span>{{ page.date | date: "%B %d, %Y" }}</span>';
         {% endif %}
         {% if page.author %}
+        {% if page.author.size > 1 %}
+        meta.innerHTML += '<span>·</span><span class="slide-authors">{% for a in page.author %}<span class="slide-author-name">{{ a }}</span>{% unless forloop.last %}<span class="slide-author-sep">,</span>{% endunless %}{% endfor %}</span>';
+        {% else %}
         meta.innerHTML += '<span>·</span><span>{{ page.author }}</span>';
+        {% endif %}
         {% endif %}
         inner.appendChild(meta);
       }

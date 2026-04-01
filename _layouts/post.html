@@ -9,7 +9,15 @@ layout: default
       <span class="badge badge-{{ page.category | downcase }}">{{ page.category }}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
       {% if page.author %}
-      <span class="author">· {{ page.author }}</span>
+      <span class="author">·
+        {% if page.author.size > 1 %}
+          {% for a in page.author %}
+            <span class="author-name">{{ a }}</span>{% unless forloop.last %}<span class="author-sep">,</span>{% endunless %}
+          {% endfor %}
+        {% else %}
+          <span class="author-name">{{ page.author }}</span>
+        {% endif %}
+      </span>
       {% endif %}
     </div>
   </header>
