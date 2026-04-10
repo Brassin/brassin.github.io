@@ -12,7 +12,7 @@
     - Docker
     - RAG
 
-- img: images/products/vaas.png
+- img: https://images.unsplash.com/photo-1759771963975-8a4885446f1f?w=800&auto=format&fit=crop&q=80
   alt: "VAAS"
   tag: "INFERENCE · DIGITAL FORENSICS"
   title: "VAAS — Detecting Image Manipulation at Scale"
@@ -26,15 +26,15 @@
     - SegFormer
     - Hugging Face
 
-- img: images/products/support.jpeg
-  alt: "SupportSage — Support at Scale"
-  tag: "SaaS · Support Automation"
-  title: "SupportSage — Support at Scale"
-  desc: "Multi-channel intelligent support that handles routine queries and escalates critical issues — without killing margins."
-  link: "#"
+- img: https://images.unsplash.com/photo-1707332287886-84315bbb04bb?w=800&auto=format&fit=crop&q=80
+  alt: "Ludo"
+  tag: "SaaS · Multi-Agent Systems"
+  title: "Ludo - Jobboard Agent"
+  desc: "In one of our mission to providing unfair advantage to our users, we are building Ludo - a jobboard agent that helps job seekers manage, merge cvs, orchestrate, prep and solve interview questions using agentic AI."
+  link: "https://jobboard-seven-beta.vercel.app/"
   github: ""
   status: "In Development"
   stack:
     - Agentic AI
-    - RAG
-    - WebSocket
+    - SSE
+    - Browser Automation
