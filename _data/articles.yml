@@ -1,7 +1,7 @@
 - href: "https://www.sciencedirect.com/science/article/pii/S266628172600020X"
-  img: "images/articles/vaaspaper.png"
+  img: "images/articles/vaaspaper1.png"
   alt: "VAAS — Image Manipulation Detection"
-  author: "Opeyemi Bamigbade et al."
+  author: "Bamigbade et al."
   category: "Digital Forensics"
   title: "VAAS — Detecting Image Manipulation with AI"
   desc: "Introduces an attention-based anomaly scoring approach that combines global verification with patch-level localisation for interpretable forensic analysis."
@@ -17,7 +17,7 @@
   cta: "Read case study →"
 
 - href: "https://zenodo.org/records/19339516"
-  img: "images/articles/agentL.png"
+  img: "images/articles/agentL1.png"
   alt: "Agent Learning: Execution-Aware Policy Optimization for LLM Tool Systems"
   author: "Opeyemi Bamigbade & Stephen Oni"
   category: "Agentic workflow"
@@ -35,7 +35,7 @@
   cta: "Read article →"
 
 - href: "https://arxiv.org/pdf/2402.15448"
-  img: "images/articles/yemipaper.png"
+  img: "images/articles/yemipaper1.png"
   alt: "Computer Vision for Multimedia Geolocation in Investigation"
   author: "Opeyemi Bamigbade"
   category: "Computer Vision"
