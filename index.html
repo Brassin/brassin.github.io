@@ -17,16 +17,16 @@
     <style>
       /* ── Design tokens ─────────────────────────────── */
       :root {
-        --bg: #080a0f;
-        --surface: #0e1118;
-        --card: #121620;
-        --border: rgba(255, 255, 255, 0.07);
-        --ink: #eaedf2;
-        --muted: #6b7585;
-        --soft: #9aa3b2;
-        --accent: #4f8ef7;
-        --accent2: #7ee8c8;
-        --gold: #c8a44a;
+        --bg: #0b0907;
+        --surface: #110e0a;
+        --card: #17130d;
+        --border: rgba(200, 149, 46, 0.13);
+        --ink: #edeae3;
+        --muted: #8a7f6e;
+        --soft: #a09180;
+        --accent: #c8952e;
+        --accent2: #e8bf5a;
+        --gold: #c8952e;
         --r: 14px;
         --max: 1160px;
       }
@@ -107,7 +107,7 @@
 
       .divider {
         height: 1px;
-        background: var(--border);
+        background: linear-gradient(90deg, transparent 0%, rgba(200, 149, 46, 0.35) 50%, transparent 100%);
         margin: 100px 0;
       }
 
@@ -131,13 +131,13 @@
 
       .btn-primary {
         background: var(--accent);
-        color: #fff;
-        box-shadow: 0 0 24px rgba(79, 142, 247, 0.3);
+        color: #0a0806;
+        box-shadow: 0 0 24px rgba(200, 149, 46, 0.35);
       }
 
       .btn-primary:hover {
-        background: #6ba3ff;
-        box-shadow: 0 0 36px rgba(79, 142, 247, 0.45);
+        background: #dba83a;
+        box-shadow: 0 0 38px rgba(200, 149, 46, 0.55);
         transform: translateY(-2px);
       }
 
@@ -150,7 +150,7 @@
       .btn-ghost:hover {
         border-color: var(--accent);
         color: var(--accent);
-        background: rgba(79, 142, 247, 0.05);
+        background: rgba(200, 149, 46, 0.07);
       }
 
       .btn-gold {
@@ -169,7 +169,7 @@
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(8, 10, 15, 0.85);
+        background: rgba(11, 9, 6, 0.88);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border);
@@ -292,7 +292,7 @@
         height: 560px;
         background: radial-gradient(
           circle,
-          rgba(79, 142, 247, 0.18) 0%,
+          rgba(200, 149, 46, 0.2) 0%,
           transparent 70%
         );
         top: -160px;
@@ -304,7 +304,7 @@
         height: 420px;
         background: radial-gradient(
           circle,
-          rgba(126, 232, 200, 0.12) 0%,
+          rgba(232, 191, 90, 0.12) 0%,
           transparent 70%
         );
         bottom: -100px;
@@ -335,8 +335,8 @@
         gap: 8px;
         padding: 6px 14px;
         border-radius: 999px;
-        border: 1px solid rgba(79, 142, 247, 0.3);
-        background: rgba(79, 142, 247, 0.08);
+        border: 1px solid rgba(200, 149, 46, 0.4);
+        background: rgba(200, 149, 46, 0.1);
         font-size: 12px;
         font-weight: 600;
         color: var(--accent);
@@ -437,15 +437,15 @@
       }
 
       .service-tile:hover {
-        background: #161b27;
+        background: #1f1810;
       }
 
       .service-icon {
         width: 44px;
         height: 44px;
         border-radius: 12px;
-        background: rgba(79, 142, 247, 0.1);
-        border: 1px solid rgba(79, 142, 247, 0.2);
+        background: rgba(200, 149, 46, 0.1);
+        border: 1px solid rgba(200, 149, 46, 0.22);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -503,7 +503,7 @@
       }
 
       .product-card:hover {
-        border-color: rgba(79, 142, 247, 0.4);
+        border-color: rgba(200, 149, 46, 0.45);
         transform: translateY(-5px) !important;
       }
 
@@ -511,7 +511,7 @@
         width: 100%;
         height: 180px;
         object-fit: cover;
-        background: linear-gradient(135deg, #141824, #0e1623);
+        background: linear-gradient(135deg, #1c1409, #120e06);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -610,7 +610,7 @@
         transform: translateY(0);
       }
       .team-card:hover {
-        border-color: rgba(79, 142, 247, 0.35);
+        border-color: rgba(200, 149, 46, 0.4);
         transform: translateY(-4px) !important;
       }
 
@@ -655,9 +655,9 @@
         font-weight: 600;
         padding: 4px 10px;
         border-radius: 6px;
-        background: rgba(79, 142, 247, 0.1);
+        background: rgba(200, 149, 46, 0.1);
         color: var(--accent);
-        border: 1px solid rgba(79, 142, 247, 0.15);
+        border: 1px solid rgba(200, 149, 46, 0.2);
       }
 
       /* ── ARTICLES ──────────────────────────────────── */
@@ -697,7 +697,7 @@
         transform: translateY(0);
       }
       .article-card:hover {
-        border-color: rgba(79, 142, 247, 0.4);
+        border-color: rgba(200, 149, 46, 0.45);
         transform: translateY(-5px) !important;
       }
 
@@ -705,7 +705,7 @@
         width: 100%;
         height: 175px;
         object-fit: cover;
-        background: linear-gradient(135deg, #141824 0%, #0e1a2b 100%);
+        background: linear-gradient(135deg, #1c1409 0%, #120e06 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -782,8 +782,8 @@
       }
 
       .mid-cta-inner {
-        background: linear-gradient(135deg, #0d1628 0%, #0a1c30 100%);
-        border: 1px solid rgba(79, 142, 247, 0.2);
+        background: linear-gradient(135deg, #160f06 0%, #1e1509 100%);
+        border: 1px solid rgba(200, 149, 46, 0.25);
         border-radius: 20px;
         padding: 64px 48px;
         position: relative;
@@ -798,7 +798,7 @@
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(79, 142, 247, 0.12) 0%,
+          rgba(200, 149, 46, 0.14) 0%,
           transparent 70%
         );
         top: -100px;
@@ -920,7 +920,7 @@
 
       .social-icon:hover {
         border-color: var(--accent);
-        background: rgba(79, 142, 247, 0.1);
+        background: rgba(200, 149, 46, 0.1);
       }
 
       .footer-col h5 {
@@ -1090,15 +1090,14 @@
         <div class="hero-badge">AI Consulting &amp; Engineering</div>
 
         <h1 class="hero-h1">
-          We build AI systems<br />
-          that <span class="highlight">actually ship.</span>
+          Turning frontier AI into<br />
+          <span class="highlight">real leverage.</span>
         </h1>
 
         <p class="hero-sub">
-          BrassinAI is a specialist AI engineering firm. We design and deliver
-          modular, production-ready AI. <br />From <b>Retrieval Systems</b> and
-          <b>Agentic Workflows</b>
-          to <br /><b>GPU-Optimised Inference Pipelines</b>.
+          We research it. We engineer it. We ship it as an unfair advantage -
+          for the consumers who live with it daily, and the enterprises that
+          need to stay ahead of it.
         </p>
 
         <div class="hero-actions">
@@ -1120,11 +1119,11 @@
         <div class="reveal">
           <div class="section-label">What we do</div>
           <h2 class="section-title">
-            End-to-end AI engineering,<br />from idea grounded in Research to
-            Production
+            End-to-end AI engineering,<br />from ideas grounded in research to
+            production
           </h2>
           <p class="section-sub">
-            We don't hand you a slide deck. We design, build, and deploy AI your
+            We don't hand you a slide deck. We design, build, and deploy your AI
             systems with measurable outcomes.
           </p>
         </div>
@@ -1241,7 +1240,7 @@
           <div class="section-label">The team</div>
           <h2 class="section-title">Builders, researchers, engineers.</h2>
           <p style="font-size:15px;color:var(--soft);line-height:1.75;max-width:680px;margin-top:16px;">
-            Our team combines deep research expertise with hands-on engineering experience. We've build tools pioneering the frontier of enabling AI on web. We've also worked at different inssituition championing
+            Our team combines deep research expertise with hands-on engineering experience. We've built tools pioneering the frontier of enabling AI on the web. We've also worked at different institutions championing
             the ideation and the deployment of AI systems in production.
           </p>
         </div>
@@ -1538,9 +1537,9 @@
       const topnav = document.querySelector("nav.topnav");
       window.addEventListener("scroll", () => {
         if (window.scrollY > 40) {
-          topnav.style.background = "rgba(8,10,15,0.97)";
+          topnav.style.background = "rgba(11,9,6,0.97)";
         } else {
-          topnav.style.background = "rgba(8,10,15,0.85)";
+          topnav.style.background = "rgba(11,9,6,0.85)";
         }
       });
     </script>
