@@ -4,7 +4,7 @@ title: "Getting Started with High-Performance Computing"
 date: 2025-11-01
 category: hpc
 author: BrassinAI
-excerpt: "An introduction to High-Performance Computing — from parallelism basics to GPU programming and distributed workloads."
+excerpt: "An introduction to High-Performance Computing - from parallelism basics to GPU programming and distributed workloads."
 ---
 
 This article covers the basics of **High-Performance Computing (HPC)**. From understanding parallelism to using GPUs efficiently, HPC remains the foundation of large-scale simulation and AI workloads.
@@ -21,8 +21,8 @@ Modern scientific computing, weather simulation, molecular dynamics, and deep le
 
 There are two fundamental types:
 
-- **Data parallelism** — the same operation applied across different data chunks
-- **Task parallelism** — different operations running concurrently
+- **Data parallelism** - the same operation applied across different data chunks
+- **Task parallelism** - different operations running concurrently
 
 ### Memory Models
 
@@ -62,9 +62,9 @@ Before optimizing, measure. {% include sidenote.html text=note_profiling %}
 
 Essential tools:
 
-- `nvprof` / `Nsight Systems` — GPU profiling
-- `perf` — CPU-level performance counters
-- `gprof` — function-level profiling
+- `nvprof` / `Nsight Systems` - GPU profiling
+- `perf` - CPU-level performance counters
+- `gprof` - function-level profiling
 
 > Premature optimization is the root of all evil, but late optimization is the root of all slow code.
 

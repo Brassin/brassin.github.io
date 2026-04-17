@@ -4,7 +4,7 @@ title: "Inside the Compiler"
 date: 2025-11-01
 category: compiler
 author: BrassinAI
-excerpt: "How source code is transformed into optimized machine instructions — from lexical analysis to SSA form."
+excerpt: "How source code is transformed into optimized machine instructions - from lexical analysis to SSA form."
 ---
 
 This article explains how source code is transformed into optimized machine instructions. We'll touch on lexical analysis, syntax trees, intermediate representations (IR), and static single assignment (SSA).
@@ -21,7 +21,7 @@ Source Code → Lexer → Parser → AST → IR → Optimizer → Code Gen → M
 
 ### 1. Lexical Analysis (Lexer)
 
-The lexer breaks raw source text into **tokens** — the atomic units of the language:
+The lexer breaks raw source text into **tokens** - the atomic units of the language:
 
 ```
 int x = 42;
@@ -34,7 +34,7 @@ The parser arranges tokens into an **Abstract Syntax Tree (AST)** that captures 
 
 ### 3. Intermediate Representation (IR)
 
-IR is a compiler's internal language — simpler than source code but richer than machine code. LLVM IR is a popular example:
+IR is a compiler's internal language - simpler than source code but richer than machine code. LLVM IR is a popular example:
 
 ```llvm
 define i32 @add(i32 %a, i32 %b) {
@@ -47,11 +47,11 @@ define i32 @add(i32 %a, i32 %b) {
 
 SSA is a property of IR where **every variable is assigned exactly once**. This simplifies many optimizations:
 
-- **Constant propagation** — replacing variables with known constants
-- **Dead code elimination** — removing unreachable or unused code
-- **Register allocation** — mapping virtual registers to hardware registers
+- **Constant propagation** - replacing variables with known constants
+- **Dead code elimination** - removing unreachable or unused code
+- **Register allocation** - mapping virtual registers to hardware registers
 
-> Compilers are the ultimate translators between human and machine — efficient, precise, and ever-evolving.
+> Compilers are the ultimate translators between human and machine - efficient, precise, and ever-evolving.
 
 ## Key Optimizations
 

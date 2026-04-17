@@ -1,8 +1,8 @@
 - img: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=80"
-  alt: "Devocle — RAG-Powered Debugging for DevOps"
+  alt: "Devocle - RAG-Powered Debugging for DevOps"
   tag: "DevOps · RAG"
-  title: "Devocle — RAG-Powered Debugging for DevOps"
-  desc: "Fine-tuned RAG system that turns raw Nginx log errors into actionable fixes — served via vLLM on Modal and delivered as a Docker Desktop extension."
+  title: "Devocle - RAG-Powered Debugging for DevOps"
+  desc: "Fine-tuned RAG system that turns raw Nginx log errors into actionable fixes - served via vLLM on Modal and delivered as a Docker Desktop extension."
   link: "/mlops/devocle-a-template-for-rag-devwork-integration/"
   github: "https://github.com/Brassin/devocle"
   status: "Live"
@@ -15,7 +15,7 @@
 - img: https://images.unsplash.com/photo-1759771963975-8a4885446f1f?w=800&auto=format&fit=crop&q=80
   alt: "VAAS"
   tag: "INFERENCE · DIGITAL FORENSICS"
-  title: "VAAS — Detecting Image Manipulation at Scale"
+  title: "VAAS - Detecting Image Manipulation at Scale"
   desc: "AI-powered system that detects and localises image tampering, delivering global integrity signals and pixel-level evidence."
   link: "https://huggingface.co/OBA-Research/vaas"
   github: "https://github.com/OBA-Research/VAAS"
@@ -25,6 +25,19 @@
     - Vision Transformers
     - SegFormer
     - Hugging Face
+
+- img: https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80
+  alt: "Debrief - Meeting Intelligence"
+  tag: "Enterprise · Meeting Intelligence"
+  title: "Debrief - Every Conversation Becomes Permanent Intelligence"
+  desc: "Turns meeting recordings into a structured, searchable knowledge bank. Decisions, commitments, and insights captured automatically - speaker-attributed, instantly queryable, and ready to power your next strategic move."
+  link: "https://brassinai.com/debrief/"
+  github: ""
+  status: "Live"
+  stack:
+    - Speech AI
+    - Multi-Agent Systems
+    - Knowledge Search
 
 - img: https://images.unsplash.com/photo-1707332287886-84315bbb04bb?w=800&auto=format&fit=crop&q=80
   alt: "Ludo"
@@ -38,3 +51,4 @@
     - Agentic AI
     - SSE
     - Browser Automation
+

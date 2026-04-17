@@ -1,6 +1,6 @@
 ---
 layout: slide
-title: "Devocle — RAG for DevOps Engineers"
+title: "Devocle - RAG for DevOps Engineers"
 date: 2026-03-06
 category: rag
 author:
@@ -24,7 +24,7 @@ DevOps engineers spend a significant amount of time digging through logs, docume
 
 **The question we asked:**
 
-> *Can we build a system that takes a DevOps engineer's log error, understands it, and surfaces the most relevant solution — instantly?*
+> *Can we build a system that takes a DevOps engineer's log error, understands it, and surfaces the most relevant solution - instantly?*
 
 > *more or less how do we provide a template for building a RAG system that can be fine-tuned on domain-specific data, served efficiently, and integrated directly into engineers' workflows?*
 
@@ -41,7 +41,7 @@ Devocle is a **Retrieval-Augmented Generation (RAG)** system purpose-built for D
 
 **Where it lives:**
 - As a REST API (FastAPI)
-- As a **Docker Desktop Extension** — right where engineers already work
+- As a **Docker Desktop Extension** - right where engineers already work
 - and can also be extended to other observability platforms (Grafana, Kibana) or chat interfaces (Slack, Teams)
 
 ---
@@ -52,7 +52,7 @@ Rather than solving every DevOps problem at once, we scoped tightly.
 
 | Constraint | Choice |
 |---|---|
-| Domain | **Nginx** — one of the most common web servers / reverse proxies |
+| Domain | **Nginx** - one of the most common web servers / reverse proxies |
 | Data source | **StackOverflow** Q&A threads tagged `nginx` |
 | Goal | Debug Nginx log errors and config issues |
 
@@ -89,7 +89,7 @@ StackOverflow nginx threads are a goldmine for this use case:
 }
 ```
 
-Each record has a **question body**, an **answer body**, acceptance status, answer vote score, question score, tags, and a URL — all preserved as metadata during indexing.
+Each record has a **question body**, an **answer body**, acceptance status, answer vote score, question score, tags, and a URL - all preserved as metadata during indexing.
 
 ---
 
@@ -108,7 +108,7 @@ Check that your Node.js app is actually running on the port nginx is proxying to
 
 **Why this format?**
 
-LLMs learn behaviour from the shape of their training data. A raw "question\nanswer" pair teaches the model to complete text. An instruction-response pair teaches it to **follow a prompt** — to behave like an assistant, not just a text predictor.
+LLMs learn behaviour from the shape of their training data. A raw "question\nanswer" pair teaches the model to complete text. An instruction-response pair teaches it to **follow a prompt** - to behave like an assistant, not just a text predictor.
 
 Since our base model (`Qwen2.5-1.5B-Instruct`) was already pre-trained with this format, using it during fine-tuning keeps the model's existing instruction-following behaviour intact while injecting domain knowledge.
 
@@ -125,7 +125,7 @@ We blend StackOverflow data with **2,000 samples from the Alpaca general instruc
 
 **Why not train on domain data alone?**
 
-Fine-tuning on a narrow corpus causes **catastrophic forgetting** — the model overwrites its general instruction-following ability with domain-specific patterns. After a few hundred steps on nginx-only data, it may refuse to answer anything outside that domain, or start producing malformed responses.
+Fine-tuning on a narrow corpus causes **catastrophic forgetting** - the model overwrites its general instruction-following ability with domain-specific patterns. After a few hundred steps on nginx-only data, it may refuse to answer anything outside that domain, or start producing malformed responses.
 
 Mixing in general Alpaca examples acts as a regulariser, anchoring the model's conversational backbone while still shifting it toward DevOps expertise.
 
@@ -138,14 +138,14 @@ We chose **Qwen/Qwen2.5-1.5B-Instruct** as our base model.
 **Why Qwen2.5-1.5B?**
 
 - 🪶 **Small enough** to fine-tune on a single GPU (Colab T4 / A10G)
-- 🏎️ **Fast inference** — fits within tight latency budgets
-- 📜 **Apache 2.0 license** — no token gate, no restrictions
-- 💡 **Already instruction-tuned** — strong baseline for instruction-following out of the box
-- 🧠 **1.5B parameters** — surprisingly capable for a focused domain like Nginx
+- 🏎️ **Fast inference** - fits within tight latency budgets
+- 📜 **Apache 2.0 license** - no token gate, no restrictions
+- 💡 **Already instruction-tuned** - strong baseline for instruction-following out of the box
+- 🧠 **1.5B parameters** - surprisingly capable for a focused domain like Nginx
 
 ```
 Base model     : Qwen/Qwen2.5-1.5B-Instruct
-Context window : 32 768 tokens (model) — current deployment constrains prompts to 2 048 tokens via vLLM to keep latency predictable
+Context window : 32 768 tokens (model) - current deployment constrains prompts to 2 048 tokens via vLLM to keep latency predictable
 Quantisation   : 4-bit NF4 (QLoRA)
 Adapter        : steveoni/qwen25-1.5b-qlora-adapter
 ```
@@ -158,34 +158,34 @@ Adapter        : steveoni/qwen25-1.5b-qlora-adapter
 
 ---
 
-## What is LoRA — and Why?
+## What is LoRA - and Why?
 
-Full fine-tuning updates every weight in the model. For a 1.5B-parameter model in FP16 that's ~3 GB of weights, plus optimizer states and gradients — easily 10–15 GB of GPU memory. That rules out free Colab.
+Full fine-tuning updates every weight in the model. For a 1.5B-parameter model in FP16 that's ~3 GB of weights, plus optimizer states and gradients - easily 10–15 GB of GPU memory. That rules out free Colab.
 
 **LoRA (Low-Rank Adaptation)** solves this: freeze the original weights and inject small **trainable rank-decomposition matrices** alongside them.
 
 ```
-Full fine-tune:   W' = W + ΔW         (ΔW has the same shape as W — expensive)
+Full fine-tune:   W' = W + ΔW         (ΔW has the same shape as W - expensive)
 
-LoRA:             W' = W + A × B      (A and B are low-rank — cheap)
+LoRA:             W' = W + A × B      (A and B are low-rank - cheap)
 ```
 
 If `W` is `(d × d)`, `A` is `(d × r)` and `B` is `(r × d)` where `r << d`.
 
-Trainable parameters drop from $d^2$ to $2 \cdot d \cdot r$ — orders of magnitude fewer.
+Trainable parameters drop from $d^2$ to $2 \cdot d \cdot r$ - orders of magnitude fewer.
 
 Think of it as **writing notes in the margins** of a textbook instead of rewriting the whole thing.
 
 ---
 
-## What is QLoRA — and Why?
+## What is QLoRA - and Why?
 
 **QLoRA (Quantized LoRA)** goes further: it compresses the frozen base model itself to **4-bit NF4**, so even the weights we're *not* training take far less VRAM.
 
 ```
 ┌─────────────────────────────────┐
 │  Base Model (4-bit NF4)         │  ← stored at ~950 MB instead of ~3 GB
-│  (frozen — never updated)       │
+│  (frozen - never updated)       │
 └─────────────────────────────────┘
           +
 ┌─────────────────────────────────┐
@@ -200,7 +200,7 @@ At compute time, weights are dequantized to FP16 on the fly. The math stays accu
 
 ---
 
-## QLoRA Configuration — The Choices
+## QLoRA Configuration - The Choices
 
 ```python
 BNB_4BIT_QUANT_TYPE       = "nf4"      # NormalFloat4
@@ -211,12 +211,12 @@ BNB_COMPUTE_DTYPE         = "float16"  # dequantize to FP16 for compute
 | Setting | Why |
 |---|---|
 | `nf4` over `fp4` | NF4 is information-theoretically optimal for normally-distributed weights (neural net weights are approximately normal) |
-| Double quantization | Quantizes the quantization constants themselves — saves ~0.4 bits/parameter at no accuracy cost |
+| Double quantization | Quantizes the quantization constants themselves - saves ~0.4 bits/parameter at no accuracy cost |
 | `float16` compute | Compatible with all CUDA GPUs including T4 (sm_75) which does not support bfloat16 |
 
 ---
 
-## LoRA Hyperparameters — The Choices
+## LoRA Hyperparameters - The Choices
 
 ```python
 LORA_R       = 8     # rank
@@ -235,7 +235,7 @@ LORA_TARGET_MODULES = [
 
 ---
 
-## Training Setup — The Choices
+## Training Setup - The Choices
 
 ```python
 BATCH_SIZE    = 2
@@ -247,9 +247,9 @@ EARLY_STOPPING_PATIENCE = 2
 VAL_SPLIT     = 0.05    # 5% held out, capped at 500 examples
 ```
 
-**Why gradient accumulation?** A batch size of 2 fits in VRAM, but produces noisy gradients. Accumulating over 8 steps gives an effective batch of 16 — stable training without OOM.
+**Why gradient accumulation?** A batch size of 2 fits in VRAM, but produces noisy gradients. Accumulating over 8 steps gives an effective batch of 16 - stable training without OOM.
 
-**Why only 1 epoch?** With curated instruction data, 1 epoch is often enough. More epochs on a small, narrow dataset risk overfitting — the model memorises answers rather than generalising.
+**Why only 1 epoch?** With curated instruction data, 1 epoch is often enough. More epochs on a small, narrow dataset risk overfitting - the model memorises answers rather than generalising.
 
 **Result:** the adapter trains in ~30 minutes on a Colab T4 and ~10 minutes on an A10G.
 
@@ -263,13 +263,13 @@ VAL_SPLIT     = 0.05    # 5% held out, capped at 500 examples
 
 ## Why vLLM?
 
-After fine-tuning we need efficient inference. We use **vLLM** — a high-throughput LLM serving engine.
+After fine-tuning we need efficient inference. We use **vLLM** - a high-throughput LLM serving engine.
 
 **Why vLLM over plain HuggingFace `generate()`?**
 
-- **PagedAttention** — manages the KV cache in virtual memory pages, eliminating memory fragmentation and dramatically increasing throughput under concurrent load
-- **LoRA hot-swapping** — serve the base model and a named adapter from a single process; the adapter is selected per-request
-- **OpenAI-compatible API** — the RAG server calls it identically to how it would call OpenAI's API, making the LLM backend swappable
+- **PagedAttention** - manages the KV cache in virtual memory pages, eliminating memory fragmentation and dramatically increasing throughput under concurrent load
+- **LoRA hot-swapping** - serve the base model and a named adapter from a single process; the adapter is selected per-request
+- **OpenAI-compatible API** - the RAG server calls it identically to how it would call OpenAI's API, making the LLM backend swappable
 
 ```python
 cmd = [
@@ -287,7 +287,7 @@ cmd = [
 
 ## Deploying to Modal
 
-We deploy the vLLM server to **Modal** — a serverless GPU cloud.
+We deploy the vLLM server to **Modal** - a serverless GPU cloud.
 
 ```
 modal deploy modal_deploy.py
@@ -299,7 +299,7 @@ modal deploy modal_deploy.py
 | Property | Value |
 |---|---|
 | GPU | A10G (24 GB VRAM) |
-| Min containers | 0 — scales to zero when idle |
+| Min containers | 0 - scales to zero when idle |
 | Timeout | 600 s |
 | Weights | Cached in Modal Volumes (no re-download on cold start) |
 
@@ -327,7 +327,7 @@ vLLM on Modal  (Qwen2.5-1.5B + LoRA adapter "finetunedqa")
 Generated answer + citations
 ```
 
-The RAG server and LLM server are fully decoupled — the RAG system calls the Modal endpoint over HTTP using the OpenAI client, making the LLM backend swappable with zero code changes.
+The RAG server and LLM server are fully decoupled - the RAG system calls the Modal endpoint over HTTP using the OpenAI client, making the LLM backend swappable with zero code changes.
 
 ---
 
@@ -339,19 +339,19 @@ The RAG server and LLM server are fully decoupled — the RAG system calls the M
 
 ## Why RAG Instead of Pure Fine-Tuning?
 
-Fine-tuning teaches the model *how* to answer in a domain. It does not guarantee factual accuracy on specific questions — parametric memory degrades, and the model can still hallucinate.
+Fine-tuning teaches the model *how* to answer in a domain. It does not guarantee factual accuracy on specific questions - parametric memory degrades, and the model can still hallucinate.
 
 **RAG separates knowledge from behaviour:**
 
 ```
-Without RAG:   User → LLM → Answer  (from training memory — may hallucinate)
+Without RAG:   User → LLM → Answer  (from training memory - may hallucinate)
 
 With RAG:      User → Retriever → Relevant passages
                                         ↓
                               User + Passages → LLM → Grounded answer
 ```
 
-Every answer is **traceable to a source document**. When the knowledge base changes (e.g. a new Nginx version), we re-index — no retraining required.
+Every answer is **traceable to a source document**. When the knowledge base changes (e.g. a new Nginx version), we re-index - no retraining required.
 
 ---
 
@@ -381,7 +381,7 @@ Every answer is **traceable to a source document**. When the knowledge base chan
 
 ---
 
-## Chunking Strategy — Why It Matters
+## Chunking Strategy - Why It Matters
 
 Each Q&A record is split into a **question passage** and an **answer passage**, then chunked with overlap:
 
@@ -397,7 +397,7 @@ Chunk 1: [...context A...][ ← overlap → ]
 Chunk 2:              [ ← overlap → ][...context B...]
 ```
 
-A key sentence that falls at a chunk boundary won't be lost — both adjacent chunks carry enough context for the retriever to score them correctly.
+A key sentence that falls at a chunk boundary won't be lost - both adjacent chunks carry enough context for the retriever to score them correctly.
 
 **Why 800 characters?**
 
@@ -405,17 +405,17 @@ Our vLLM deployment constrains Qwen2.5-1.5B to a 2,048-token context window (the
 
 ---
 
-## Embeddings & Vector Search — Why These Choices
+## Embeddings & Vector Search - Why These Choices
 
 ```python
 huggingface_embed_model = "all-MiniLM-L6-v2"
 ```
 
 **Why `all-MiniLM-L6-v2`?**
-- Runs **locally** — no external API, no latency, no cost
-- 384-dimensional vectors — small, fast, and ChromaDB-friendly
+- Runs **locally** - no external API, no latency, no cost
+- 384-dimensional vectors - small, fast, and ChromaDB-friendly
 - Strong semantic similarity on technical QA (benchmarked on BEIR)
-- **Same model at index time and query time** — critical: mismatched embeddings produce random retrieval results
+- **Same model at index time and query time** - critical: mismatched embeddings produce random retrieval results
 
 **Why ChromaDB?**
 - Simple local-persistence mode for development
@@ -425,7 +425,7 @@ huggingface_embed_model = "all-MiniLM-L6-v2"
 
 ---
 
-## The Prompt — Why Restrictive?
+## The Prompt - Why Restrictive?
 
 ```
 You are a helpful assistant specialised in Nginx, web servers, and DevOps.
@@ -443,7 +443,7 @@ Why is nginx returning 502?
 Answer:
 ```
 
-The `Use ONLY the CONTEXT PASSAGES` constraint is deliberate. Without it, the fine-tuned model will blend retrieved context with its parametric memory — producing confident but untraceable answers. Hard grounding keeps every claim auditable.
+The `Use ONLY the CONTEXT PASSAGES` constraint is deliberate. Without it, the fine-tuned model will blend retrieved context with its parametric memory - producing confident but untraceable answers. Hard grounding keeps every claim auditable.
 
 ---
 
@@ -471,7 +471,7 @@ The `/query/json` endpoint returns a typed Pydantic schema:
 }
 ```
 
-`confidence` is a top-level score on the whole answer. Citations carry a `quote` — an exact excerpt that lets the engineer verify the source in one click.
+`confidence` is a top-level score on the whole answer. Citations carry a `quote` - an exact excerpt that lets the engineer verify the source in one click.
 
 ---
 
@@ -485,7 +485,7 @@ The `/query/json` endpoint returns a typed Pydantic schema:
 
 DevOps engineers already live in Docker Desktop. Rather than asking them to switch to a browser tab or CLI tool, we brought Devocle **directly into their workflow**.
 
-The extension registers a **dashboard tab** — a single-page HTML/CSS/JS UI, zero additional installs required:
+The extension registers a **dashboard tab** - a single-page HTML/CSS/JS UI, zero additional installs required:
 
 ```json
 {
@@ -493,7 +493,7 @@ The extension registers a **dashboard tab** — a single-page HTML/CSS/JS UI, ze
   "version": "1.0.0",
   "title": "Devocle",
   "vendor": "Brassin",
-  "description": "Devocle — ask any Nginx / DevOps question. Answers sourced from StackOverflow and generated by Qwen2.5 fine-tuned on Modal.",
+  "description": "Devocle - ask any Nginx / DevOps question. Answers sourced from StackOverflow and generated by Qwen2.5 fine-tuned on Modal.",
   "ui": {
     "dashboard-tab": {
       "title": "Devocle",
@@ -544,14 +544,14 @@ The extension registers a **dashboard tab** — a single-page HTML/CSS/JS UI, ze
 |---|---|
 | Dataset | StackOverflow nginx JSONL (+ 2 000 Alpaca samples) |
 | Base model | Qwen2.5-1.5B-Instruct (Apache 2.0) |
-| Fine-tuning | QLoRA — 4-bit NF4, rank 8, bitsandbytes |
+| Fine-tuning | QLoRA - 4-bit NF4, rank 8, bitsandbytes |
 | Adapter | PEFT LoRA → HuggingFace Hub (`steveoni/qwen25-1.5b-qlora-adapter`) |
 | Serving | vLLM with LoRA hot-swap, OpenAI-compatible API |
 | Cloud deploy | Modal (A10G, serverless, scales to zero) |
 | Embeddings | `all-MiniLM-L6-v2` (local, no API key) |
 | Vector DB | ChromaDB (local dev → ChromaDB Cloud) |
-| Chunking | RecursiveCharacterTextSplitter — 800 chars / 150 overlap |
-| API | FastAPI — `/query` (text) + `/query/json` (structured + citations) |
+| Chunking | RecursiveCharacterTextSplitter - 800 chars / 150 overlap |
+| API | FastAPI - `/query` (text) + `/query/json` (structured + citations) |
 | Interface | Docker Desktop Extension |
 
 ---

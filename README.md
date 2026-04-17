@@ -31,8 +31,8 @@ A technical blog built with **Jekyll** and deployed on **GitHub Pages**. Article
 
 ### Prerequisites
 
-- **Ruby** (>= 2.7) — check with `ruby -v`
-- **Bundler** — install with `gem install bundler`
+- **Ruby** (>= 2.7) - check with `ruby -v`
+- **Bundler** - install with `gem install bundler`
 
 ### Setup & Serve
 
@@ -77,7 +77,7 @@ Output goes to `_site/`.
 
 3. Write your content in Markdown below the front matter.
 
-4. Push to `main` — GitHub Pages will build and deploy automatically.
+4. Push to `main` - GitHub Pages will build and deploy automatically.
 
 ### Supported Categories
 
@@ -93,7 +93,7 @@ Output goes to `_site/`.
 
 This site deploys automatically via **GitHub Pages** on every push to `main`. The custom domain `brassinai.com` is configured via the `CNAME` file.
 
-No CI/CD setup required — GitHub Pages has built-in Jekyll support.
+No CI/CD setup required - GitHub Pages has built-in Jekyll support.
 
 ## 📄 License
 

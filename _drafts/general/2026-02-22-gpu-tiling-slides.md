@@ -15,11 +15,11 @@ Understanding the essence of data locality in GPU and the complexity of Tiling.
 
 ---
 
-## The Starting Blocks — Tiling
+## The Starting Blocks - Tiling
 
 The basic idea of GPU is to get lots of things done very fast. Nothing less, nothing more.
 
-To do that, a lot of things were put in place — from the hardware architectures to the software stack.
+To do that, a lot of things were put in place - from the hardware architectures to the software stack.
 
 Let's start with understanding the basic building blocks of a GPU program.
 
@@ -118,13 +118,13 @@ The **SM** is the basic unit of computation in a GPU. It is responsible for:
 - Managing execution of threads
 - Managing registers, shared memory, and L1 cache
 
-To optimize your GPU kernel to the fullest, you need to understand your GPU specification — total number of SMs, total registers per SM, etc.
+To optimize your GPU kernel to the fullest, you need to understand your GPU specification - total number of SMs, total registers per SM, etc.
 
 ---
 
 ## What's Our Goal?
 
-When solving data locality — moving data from **global memory → shared memory → registers** — we need to consider:
+When solving data locality - moving data from **global memory → shared memory → registers** - we need to consider:
 
 - Proper **data layout and indexing**
 - **Coalesced memory access**
@@ -223,7 +223,7 @@ The index in matrix A:
 A[9 * 16 + i] = A[144 + i]
 ```
 
-This maps to **row 9** of matrix A — the second row inside the second block.
+This maps to **row 9** of matrix A - the second row inside the second block.
 
 ---
 

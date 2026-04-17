@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "About — BrassinAI"
+title: "About - BrassinAI"
 permalink: /about/
 ---
 
@@ -12,11 +12,11 @@ permalink: /about/
   <h2>Categories</h2>
 
   <ul>
-    <li><strong>VLM</strong> — Vision-Language Models, multimodal AI, embeddings</li>
-    <li><strong>HPC</strong> — High-Performance Computing, CUDA, MPI, distributed systems</li>
-    <li><strong>Compiler</strong> — Compiler design, IR, SSA, optimization passes</li>
-    <li><strong>General</strong> — Productivity, documentation, engineering culture</li>
-    <li><strong>Other</strong> — Miscellaneous experiments and cross-domain projects</li>
+    <li><strong>VLM</strong> - Vision-Language Models, multimodal AI, embeddings</li>
+    <li><strong>HPC</strong> - High-Performance Computing, CUDA, MPI, distributed systems</li>
+    <li><strong>Compiler</strong> - Compiler design, IR, SSA, optimization passes</li>
+    <li><strong>General</strong> - Productivity, documentation, engineering culture</li>
+    <li><strong>Other</strong> - Miscellaneous experiments and cross-domain projects</li>
   </ul>
 
   <h2>Contact</h2>

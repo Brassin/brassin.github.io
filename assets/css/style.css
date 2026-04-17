@@ -1,4 +1,4 @@
-/* ===== BrassinAI — Dark Theme with Tufte-style Sidenotes ===== */
+/* ===== BrassinAI - Dark Theme with Tufte-style Sidenotes ===== */
 :root {
   --bg: #0b0907;
   --bg-alt: #110e0a;
@@ -57,7 +57,7 @@ body {
     "calt" 1;
 }
 
-/* ---- Links — subtle underline that pops on hover ---- */
+/* ---- Links - subtle underline that pops on hover ---- */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -72,7 +72,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* Cards are <a> links — prevent global link underline from interfering */
+/* Cards are <a> links - prevent global link underline from interfering */
 a.card,
 a.card:hover {
   border-bottom: 1px solid var(--border);
@@ -707,7 +707,7 @@ nav.topnav {
 
 
 /* ======================================================================
-   POST PAGE — Reading-optimized typography
+   POST PAGE - Reading-optimized typography
    ====================================================================== */
 
 /* ---- Back link ---- */
@@ -770,7 +770,7 @@ nav.topnav {
   margin-right: 2px;
 }
 
-/* ---- Post Content — Newsreader body with generous rhythm ---- */
+/* ---- Post Content - Newsreader body with generous rhythm ---- */
 .post-content {
   max-width: var(--content-w);
   font-family: var(--font-body);
@@ -781,7 +781,7 @@ nav.topnav {
   letter-spacing: 0.01em;
 }
 
-/* Headings — Inter, tight tracking, generous vertical space */
+/* Headings - Inter, tight tracking, generous vertical space */
 .post-content h2 {
   font-family: var(--font-heading);
   font-size: 28px;
@@ -813,7 +813,7 @@ nav.topnav {
   text-transform: none;
 }
 
-/* Paragraphs — spacious rhythm */
+/* Paragraphs - spacious rhythm */
 .post-content p {
   margin-bottom: 24px;
   word-spacing: 0.02em;
@@ -862,7 +862,7 @@ nav.topnav {
   border-bottom-color: var(--accent-hover);
 }
 
-/* Blockquotes — warm, pulled-in feel */
+/* Blockquotes - warm, pulled-in feel */
 .post-content blockquote {
   border-left: 3px solid var(--accent);
   padding: 16px 24px;
@@ -879,7 +879,7 @@ nav.topnav {
   margin-bottom: 0;
 }
 
-/* Code — JetBrains Mono */
+/* Code - JetBrains Mono */
 .post-content code {
   background: var(--surface);
   padding: 2px 7px;
@@ -907,7 +907,7 @@ nav.topnav {
   color: inherit; /* let Rouge token colors take over */
 }
 
-/* Rouge wrapper — Jekyll wraps code in div.highlighter-rouge > div.highlight > pre.highlight */
+/* Rouge wrapper - Jekyll wraps code in div.highlighter-rouge > div.highlight > pre.highlight */
 .highlighter-rouge .highlight {
   background: var(--surface);
   border-radius: 10px;
@@ -949,7 +949,7 @@ div.highlighter-rouge pre.highlight {
   border-radius: 0 0 10px 10px;
 }
 
-/* Tables — clean, Inter for headers */
+/* Tables - clean, Inter for headers */
 .post-content table {
   width: 100%;
   border-collapse: collapse;
@@ -983,14 +983,14 @@ div.highlighter-rouge pre.highlight {
   margin: 32px 0;
 }
 
-/* Horizontal rules — spacious */
+/* Horizontal rules - spacious */
 .post-content hr {
   border: none;
   border-top: 1px solid var(--border);
   margin: 52px 0;
 }
 
-/* ---- Table of Contents — inline, placed via toc include ---- */
+/* ---- Table of Contents - inline, placed via toc include ---- */
 .toc {
   max-width: var(--content-w);
   margin: 28px 0 36px;
@@ -1128,7 +1128,7 @@ div.highlighter-rouge pre.highlight {
   font-family: var(--font-ui);
 }
 
-/* ---- References — end of article ---- */
+/* ---- References - end of article ---- */
 .references {
   max-width: var(--content-w);
   margin-top: 52px;
@@ -1223,7 +1223,7 @@ div.highlighter-rouge pre.highlight {
 }
 
 /* ======================================================================
-   ROUGE SYNTAX HIGHLIGHTING — Dark theme (Monokai-inspired)
+   ROUGE SYNTAX HIGHLIGHTING - Dark theme (Monokai-inspired)
    Rouge token classes: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
    ====================================================================== */
 .highlight .hll {
@@ -1363,7 +1363,7 @@ div.highlighter-rouge pre.highlight {
 } /* Error */
 
 /* ======================================================================
-   PRODUCTS PAGE — Dedicated showcase layout
+   PRODUCTS PAGE - Dedicated showcase layout
    ====================================================================== */
 
 /* ---- Products page wrapper ---- */
@@ -1461,7 +1461,7 @@ div.highlighter-rouge pre.highlight {
   gap: 28px;
 }
 
-/* ---- Product card (pcard) — horizontal layout ---- */
+/* ---- Product card (pcard) - horizontal layout ---- */
 .pcard {
   display: grid;
   grid-template-columns: 320px 1fr;
